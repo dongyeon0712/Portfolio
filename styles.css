@@ -65,7 +65,16 @@ button { font: inherit; color: inherit; }
 
 
 .chrome { flex-shrink: 0; }
-.topbar { display: flex; justify-content: flex-end; padding: 14px 20px 18px; }
+.topbar { display: flex; justify-content: flex-end; align-items: center; gap: 12px; padding: 14px 20px 18px; }
+.resume-link {
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  font-weight: 600; font-size: 15px; line-height: 20px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.resume-link:hover { background: var(--bg-lavender); }
+.resume-link:focus-visible { outline: 2px solid var(--accent-blue-bright); outline-offset: 2px; }
 
 /* Summary button — modeled on the Policy Summary button */
 .summary-btn {
