@@ -198,6 +198,7 @@ h1 {
 .card__visual--contain { background: #1602bb; }
 .card__visual--contain.card__visual--dell { background: #1c2c3b; }
 .card__visual--contain.card__visual--light { background: #fbf9fc; }
+.card__visual--contain.card__visual--privy { background: #0e1b2b; }
 .card__visual.card__visual--contain img { object-fit: contain; }
 .card__visual img { width: 100%; height: 100%; object-fit: cover; }
 .card__badge {
