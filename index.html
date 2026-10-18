@@ -1,188 +1,790 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="theme-color" content="#f5f3ff">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dongyeon (Daniel) Seo — Product Designer</title>
-  <meta name="description" content="Inclusive design that moves revenue. Selected work from Dongyeon (Daniel) Seo: Dell Premier, ShelterTech accessibility audit, and certifications.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daniel Seo Comic Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Gaegu:wght@400;700&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: two scenes. Home is the storefront seen from the street (sign, corrugated roof, plaster wall with the intro and results board). Every other page is inside the comic room: wallpaper, a shelf of comic spines with a hanging lamp, a wooden floor along the bottom, and a top bar with a small shop sign that leads back outside. Projects are big two-column cards that put the org, the result and what I did in plain text before anyone clicks. The wooden dock at the bottom is the nav, with the stamp card as a chip. Matte everywhere: flat colors plus paper grain, no gloss. One deliberate look, so no light/dark pair. */
+:root {
+  --sky: #a9bfd0;
+  --plaster: #d9cdb1;
+  --roof: #7a796f;
+  --wood: #6a4a31;
+  --wood-2: #80593a;
+  --board: #e9dfc2;
+  --paper: #efe6cf;
+  --red: #ab3a2d;
+  --stamp: #a3302a;
+  --green: #4d7561;
+  --blue: #3b5f84;
+  --ink: #2a2723;
+  --ink-soft: #4a453d;
+  --slate: #33403a;
+  --chalk: #ece7d6;
+  --chalk-y: #e6cf78;
+  --concrete: #aeaa9e;
+  --room: #3f5046;
+  --floor: #7a5636;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .18 0 0 0 0 .15 0 0 0 .25 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --f-display: 'Black Han Sans', 'Arial Black', Impact, sans-serif;
+  --f-label: 'Do Hyeon', 'Arial Narrow', sans-serif;
+  --f-body: 'Gowun Batang', Georgia, serif;
+  --f-hand: 'Gaegu', 'Comic Sans MS', cursive;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background-color: var(--sky);
+  background-image: var(--grain);
+  color: var(--ink);
+  font: 400 17px/1.6 var(--f-body);
+  padding-block: 14px 100px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::after { content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: 100px; z-index: 20; pointer-events: none; background-color: var(--concrete); background-image: var(--grain); border-top: 4px solid rgba(0,0,0,.2); }
+body.inside { background-color: var(--room); background-image: var(--grain), repeating-linear-gradient(90deg, transparent 0 46px, rgba(0,0,0,.09) 46px 49px); padding-top: 14px; }
+body.inside::after { height: 100px; background-color: var(--floor); background-image: var(--grain), repeating-linear-gradient(90deg, transparent 0 130px, rgba(0,0,0,.28) 130px 132px); border-top: 12px solid #54391f; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.room :focus-visible, .desk :focus-visible, .dock :focus-visible, .reward :focus-visible { outline-color: #fff; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+[data-focus]:focus { outline: none; }
+.facade { max-width: 1120px; margin-inline: auto; }
+
+/* outside: sign, roof, beam, wall */
+.signboard { position: relative; z-index: 2; display: flex; align-items: stretch; width: fit-content; max-width: 100%; margin: 0 auto -8px; background-color: var(--board); background-image: var(--grain); border: 5px solid var(--wood); border-radius: 3px; box-shadow: 0 4px 0 rgba(0,0,0,.18); }
+.sign-side { writing-mode: vertical-rl; display: flex; align-items: center; font: 400 .75rem/1 var(--f-label); letter-spacing: .2em; text-transform: uppercase; padding: 6px 7px; border-right: 3px solid var(--wood); }
+.sign-main { flex: 1; min-width: 0; text-align: left; padding: 6px 16px 8px; }
+.sign-main h1 { margin: 0; font-size: inherit; }
+.sign-btn { display: block; width: 100%; text-align: left; background: none; border: 0; padding: 0; cursor: pointer; font: 400 clamp(1.5rem, 6vw, 2.3rem)/1 var(--f-display); color: var(--red); letter-spacing: .06em; text-transform: uppercase; }
+.sign-main p { margin: 3px 0 0; font: 400 1rem/1.2 var(--f-label); letter-spacing: .24em; text-transform: uppercase; }
+.roof { height: 30px; background-color: var(--roof); background-image: var(--grain), linear-gradient(100deg, transparent 0 24%, rgba(154,91,60,.38) 24% 31%, transparent 31% 60%, rgba(154,91,60,.3) 60% 64%, transparent 64% 86%, rgba(154,91,60,.34) 86% 91%, transparent 91%), repeating-linear-gradient(90deg, rgba(0,0,0,.2) 0 3px, rgba(255,255,255,.07) 3px 6px, transparent 6px 16px); border-radius: 2px; box-shadow: 0 5px 0 rgba(0,0,0,.15); }
+.beam { height: 14px; background-color: var(--wood); background-image: var(--grain); }
+.wall { background-color: var(--plaster); background-image: var(--grain); border-inline: 18px solid var(--wood); padding: 18px clamp(12px, 3vw, 28px) 22px; min-height: 360px; }
+.step { height: 20px; background-color: var(--concrete); background-image: var(--grain); margin-inline: -6px; border-radius: 0 0 3px 3px; box-shadow: 0 4px 0 rgba(0,0,0,.15); }
+.view { display: grid; gap: 30px; }
+.btn { font: 400 1.05rem/1 var(--f-label); letter-spacing: .08em; background: var(--red); color: #f6efdc; border: 2px solid var(--red); padding: 12px 18px; min-height: 46px; border-radius: 3px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.btn:hover { background: #962f23; border-color: #962f23; }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn.ghost:hover { background: rgba(42,39,35,.1); }
+.btn.paper { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.btn.paper:hover { background: #fff7e0; border-color: #fff7e0; }
+.painted { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+.painted h2 { margin: 0; font: 400 clamp(1.5rem, 4vw, 2.2rem)/1.1 var(--f-label); color: var(--red); letter-spacing: .06em; }
+.hint { margin: 2px 0 0; font-size: .95rem; line-height: 1.4; color: var(--ink-soft); max-width: 62ch; }
+.fine { margin: 16px 0 0; font-size: .88rem; text-align: center; }
+body.inside .fine { color: var(--chalk); }
+
+/* home: notice and stats */
+.notice { position: relative; background-color: var(--paper); background-image: var(--grain); padding: 18px clamp(18px, 3vw, 30px); box-shadow: 3px 5px 0 rgba(0,0,0,.25); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px 28px; align-items: end; }
+.notice::before, .notice::after { content: ""; position: absolute; top: -8px; width: 90px; height: 16px; background: rgba(206,188,128,.85); }
+.notice::before { left: 24px; transform: rotate(-3deg); }
+.notice::after { right: 24px; transform: rotate(3deg); }
+.eyebrow { margin: 0 0 6px; font: 400 clamp(1.15rem, 3vw, 1.5rem)/1.2 var(--f-label); letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+.notice h2 { margin: 0; font: 400 clamp(1.6rem, 3.6vw, 2.4rem)/1.05 var(--f-display); text-wrap: balance; }
+.lede { margin: 8px 0 0; font-size: .98rem; line-height: 1.5; max-width: 62ch; }
+.cta-col { display: grid; gap: 10px; min-width: 190px; }
+.tiles { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+#view-home { gap: 16px; }
+#view-home .painted h2 { font-size: 1.35rem; }
+.tiles li { container-type: inline-size; }
+.tile { height: 100%; background-color: var(--paper); background-image: var(--grain); border-top: 5px solid var(--red); padding: 7px 12px 9px; box-shadow: 2px 3px 0 rgba(0,0,0,.22); }
+.tile-n { display: block; font: 400 clamp(1.5rem, 15cqi, 2.2rem)/1.02 var(--f-display); color: var(--red); overflow-wrap: anywhere; }
+.tile-n.long { font-size: clamp(1.2rem, 11cqi, 1.75rem); }
+.tile-l { display: block; margin-top: 3px; font: 400 1rem/1.2 var(--f-label); letter-spacing: .04em; }
+.tile-c { display: block; margin-top: 1px; font-size: .82rem; line-height: 1.3; color: var(--ink-soft); }
+
+/* inside: the room */
+.room { position: relative; max-width: 1180px; margin-inline: auto; color: var(--chalk); overflow-x: visible; overflow-y: clip; }
+.room .painted h2 { color: var(--chalk-y); }
+.room .hint { color: #d3dacb; }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 18px; }
+.mark { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; background-color: var(--board); background-image: var(--grain); border: 4px solid var(--wood); border-radius: 3px; padding: 5px 12px 6px; cursor: pointer; color: var(--ink); box-shadow: 0 3px 0 rgba(0,0,0,.3); min-height: 44px; }
+.mark-a { font: 400 1.25rem/1 var(--f-display); color: var(--red); letter-spacing: .06em; text-transform: uppercase; }
+.mark-b { font: 400 .8rem/1 var(--f-label); letter-spacing: .2em; text-transform: uppercase; }
+.toplink { display: inline-flex; align-items: center; min-height: 44px; padding: 0 2px; font: 400 1rem/1 var(--f-label); letter-spacing: .14em; text-transform: uppercase; color: var(--chalk); text-decoration: none; border-bottom: 3px solid var(--chalk-y); }
+.lamp { position: absolute; top: 0; left: 50%; margin-left: -42px; width: 84px; height: 70px; padding: 0; border: 0; background: none; cursor: pointer; z-index: 2; }
+.lamp::before { content: ""; position: absolute; left: 41px; top: 0; width: 2px; height: 38px; background: #1d1a17; }
+.lamp::after { content: ""; position: absolute; left: 0; top: 38px; width: 84px; height: 32px; background: #c79a2c; border-radius: 84px 84px 5px 5px; box-shadow: inset 0 -6px 0 rgba(0,0,0,.2); }
+.lamp[aria-pressed="false"]::after { background: #7a6a45; box-shadow: inset 0 -6px 0 rgba(0,0,0,.28); }
+.lamp:hover::after { filter: brightness(1.1); }
+.glow { position: absolute; top: 66px; left: 50%; width: min(1150px, 100%); height: 1152px; transform: translateX(-50%); pointer-events: none; z-index: 0; background: rgba(240,212,130,.09); clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%); }
+.glow::before { content: ""; position: absolute; inset: 0; background: rgba(240,212,130,.1); clip-path: polygon(47% 0, 53% 0, 82% 100%, 18% 100%); }
+.glow::after { content: ""; position: absolute; left: 30%; right: 30%; top: 0; height: 34%; background: rgba(255,236,170,.1); clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%); }
+.glow { display: none; }
+body.inside.lights-off::before { content: ""; position: fixed; inset: 0; background: rgba(8,12,10,.34); pointer-events: none; z-index: 0; }
+.topbar, .room-body { position: relative; z-index: 1; }
+.room-body { padding-top: 34px; display: grid; gap: 30px; }
+
+/* project cards */
+.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
+.cards li { min-width: 0; }
+.pcard { --c1: #3b5f84; --c2: #25405c; position: relative; height: 100%; background-color: var(--paper); background-image: var(--grain); color: var(--ink); padding: 12px 12px 22px; box-shadow: 4px 6px 0 rgba(0,0,0,.4); transition: transform .15s ease; }
+.pcard:hover { transform: translateY(-4px); }
+.pcard:has(.plink:focus-visible) { outline: 3px solid #fff; outline-offset: 5px; }
+.p-home { --c1: #3b5f84; --c2: #25405c; }
+.p-landing { --c1: #ab3a2d; --c2: #7a251b; }
+.p-shelter { --c1: #3f7358; --c2: #274b3a; }
+.p-privy { --c1: #6a4e8c; --c2: #46325f; }
+.cover { position: relative; container-type: inline-size; aspect-ratio: 16 / 9; overflow: hidden; background-color: var(--c1); background-image: var(--grain); }
+.cover::before { content: ""; position: absolute; inset: 0; background: radial-gradient(var(--c2) 30%, transparent 33%) 0 0 / 3.4cqi 3.4cqi; opacity: .6; -webkit-mask-image: linear-gradient(135deg, transparent 40%, #000); mask-image: linear-gradient(135deg, transparent 40%, #000); }
+.c-text { position: absolute; left: 5cqi; top: 50%; width: 49cqi; transform: translateY(-58%); color: #f6efdc; }
+.c-stat { display: block; font: 400 13cqi/1 var(--f-display); overflow-wrap: anywhere; }
+.c-stat.sm { font-size: 9.2cqi; }
+.c-label { display: block; margin-top: 2.5cqi; font: 400 4.8cqi/1.2 var(--f-label); letter-spacing: .08em; text-transform: uppercase; }
+.c-chips { position: absolute; left: 5cqi; bottom: 5cqi; display: flex; flex-wrap: wrap; gap: 2cqi; max-width: 50cqi; }
+.c-chips span { background: rgba(0,0,0,.32); color: #f6efdc; font: 400 4.4cqi/1 var(--f-label); letter-spacing: .06em; padding: 1.4cqi 2.4cqi; text-transform: uppercase; }
+.mock { position: absolute; right: 4cqi; top: 50%; width: 40cqi; height: 33cqi; margin-top: -16.5cqi; background-color: #f3ecd8; background-repeat: no-repeat; box-shadow: 3px 4px 0 rgba(0,0,0,.38); transform: rotate(2.5deg); }
+.mock::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5.5cqi; background: radial-gradient(circle at 3cqi 50%, #ab3a2d 0 .9cqi, transparent 1cqi), radial-gradient(circle at 6cqi 50%, #b98a24 0 .9cqi, transparent 1cqi), radial-gradient(circle at 9cqi 50%, #4d7561 0 .9cqi, transparent 1cqi), #2a2723; }
+.mk-home { background-image: linear-gradient(var(--c1), var(--c1)), linear-gradient(#d3c7a8, #d3c7a8), linear-gradient(#d3c7a8, #d3c7a8), linear-gradient(#d3c7a8, #d3c7a8); background-position: 3cqi 8cqi, 3cqi 21cqi, 15cqi 21cqi, 27cqi 21cqi; background-size: 34cqi 10cqi, 10cqi 9cqi, 10cqi 9cqi, 10cqi 9cqi; }
+.mk-landing { background-image: linear-gradient(var(--c1), var(--c1)), linear-gradient(#d3c7a8, #d3c7a8), linear-gradient(#d3c7a8, #d3c7a8), linear-gradient(var(--c1), var(--c1)); background-position: 3cqi 8cqi, 3cqi 16cqi, 3cqi 22cqi, 3cqi 28cqi; background-size: 34cqi 6cqi, 34cqi 4cqi, 34cqi 4cqi, 14cqi 4cqi; }
+.mk-shelter { background-image: linear-gradient(#3f7358, #3f7358), linear-gradient(#3f7358, #3f7358), linear-gradient(#3f7358, #3f7358), linear-gradient(#3f7358, #3f7358), linear-gradient(#d3c7a8, #d3c7a8), linear-gradient(#d3c7a8, #d3c7a8), linear-gradient(#d3c7a8, #d3c7a8), linear-gradient(#d3c7a8, #d3c7a8); background-position: 3cqi 8.5cqi, 3cqi 14.5cqi, 3cqi 20.5cqi, 3cqi 26.5cqi, 9cqi 8.75cqi, 9cqi 14.75cqi, 9cqi 20.75cqi, 9cqi 26.75cqi; background-size: 4cqi 4cqi, 4cqi 4cqi, 4cqi 4cqi, 4cqi 4cqi, 28cqi 3.5cqi, 28cqi 3.5cqi, 28cqi 3.5cqi, 28cqi 3.5cqi; }
+.mk-privy { background-image: linear-gradient(#d3c7a8, #d3c7a8), linear-gradient(#d3c7a8, #d3c7a8), linear-gradient(#d3c7a8, #d3c7a8), linear-gradient(#d3c7a8, #d3c7a8), linear-gradient(var(--c1), var(--c1)), linear-gradient(#cfc4a6, #cfc4a6), linear-gradient(var(--c1), var(--c1)), linear-gradient(var(--c1), var(--c1)); background-position: 3cqi 8.75cqi, 3cqi 14.75cqi, 3cqi 20.75cqi, 3cqi 26.75cqi, 27cqi 8.5cqi, 27cqi 14.5cqi, 27cqi 20.5cqi, 27cqi 26.5cqi; background-size: 20cqi 3.5cqi, 20cqi 3.5cqi, 20cqi 3.5cqi, 20cqi 3.5cqi, 10cqi 4.5cqi, 10cqi 4.5cqi, 10cqi 4.5cqi, 10cqi 4.5cqi; }
+.seen { display: none; position: absolute; right: 4cqi; bottom: 4cqi; transform: rotate(-8deg); border: .8cqi solid #f6efdc; color: #f6efdc; background: rgba(0,0,0,.28); font: 400 6.5cqi/1 var(--f-display); letter-spacing: .08em; padding: 1.2cqi 3cqi; border-radius: 1.2cqi; text-transform: uppercase; }
+.pcard.rented .seen { display: block; }
+.pbody { padding: 16px 10px 0; }
+.prow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; }
+.org { display: inline-flex; align-items: center; gap: 8px; font: 400 1.1rem/1 var(--f-label); letter-spacing: .06em; text-transform: uppercase; }
+.org i { display: block; width: 12px; height: 12px; background: var(--c1); }
+.pill { font: 400 .95rem/1 var(--f-label); letter-spacing: .1em; text-transform: uppercase; border: 2px solid var(--ink); padding: 6px 11px; border-radius: 99px; }
+.ptitle { margin: 12px 0 0; font: 400 clamp(1.6rem, 3.2vw, 2.3rem)/1.08 var(--f-display); text-wrap: balance; }
+.plink { color: inherit; text-decoration: none; }
+.plink::after { content: ""; position: absolute; inset: 0; }
+.did { margin: 14px 0 0; display: grid; gap: 8px; }
+.did div { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 10px; align-items: baseline; padding-top: 8px; border-top: 1px dotted rgba(42,39,35,.5); }
+.did dt { font: 400 .95rem/1.2 var(--f-label); letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+.did dd { margin: 0; font-weight: 700; }
+.psyn { margin: 12px 0 0; color: var(--ink-soft); }
+.go { display: inline-block; margin-top: 14px; font: 400 1.1rem/1 var(--f-label); letter-spacing: .08em; text-transform: uppercase; border-bottom: 3px solid var(--red); padding-bottom: 3px; }
+
+/* testimonials */
+.notes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
+.note { position: relative; margin: 0; padding: 30px 26px 22px; background-color: var(--paper); background-image: var(--grain), repeating-linear-gradient(transparent 0 35px, rgba(59,95,132,.22) 35px 36px); color: var(--ink); box-shadow: 3px 5px 0 rgba(0,0,0,.3); transform: rotate(var(--t, -1deg)); }
+.notes li:nth-child(2) .note { --t: 1deg; }
+.note::before { content: ""; position: absolute; top: -8px; left: 50%; width: 90px; height: 16px; margin-left: -45px; background: rgba(206,188,128,.85); transform: rotate(-2deg); }
+.note blockquote { margin: 0; }
+.note p { margin: 0; font: 400 clamp(1.35rem, 2.6vw, 1.75rem)/36px var(--f-hand); }
+.note mark { background: rgba(214,176,70,.6); color: inherit; padding: 0 .15em; }
+.note figcaption { margin-top: 18px; font: 400 1.1rem/1.2 var(--f-label); letter-spacing: .06em; text-transform: uppercase; }
+.note figcaption span { display: block; color: var(--ink-soft); }
+.note .sticker.spot { position: absolute; right: 10px; bottom: 10px; z-index: 1; }
+
+/* resume */
+.cta-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.rgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: start; }
+.stack { display: grid; gap: 22px; }
+.rcard { background-color: var(--paper); background-image: var(--grain); border-top: 7px solid var(--red); padding: 16px 20px 12px; box-shadow: 3px 5px 0 rgba(0,0,0,.3); color: var(--ink); }
+.rcard h3 { margin: 0 0 6px; font: 400 1.3rem/1.2 var(--f-label); letter-spacing: .08em; text-transform: uppercase; color: var(--red); }
+.rows { list-style: none; margin: 0; padding: 0; }
+.rows li { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 12px; padding: 9px 0; border-bottom: 1px dotted rgba(42,39,35,.5); }
+.rows li:last-child { border-bottom: 0; }
+.yr { font: 400 1rem/1.4 var(--f-label); letter-spacing: .04em; color: var(--ink-soft); }
+.what strong { display: block; font-weight: 700; }
+.skills { margin: 0; padding: 4px 0 6px; display: grid; gap: 8px; }
+.skills dt { font: 400 .95rem/1 var(--f-label); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.skills dd { margin: 2px 0 0; }
+.desk { background-color: var(--wood); background-image: var(--grain); border: 4px solid #54391f; border-radius: 3px; padding: 20px 22px; color: var(--chalk); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 24px; }
+.desk h2 { margin: 0 0 4px; font: 400 1.6rem/1.1 var(--f-display); color: var(--chalk-y); }
+.desk p { margin: 0; max-width: 50ch; }
+.desk .acts { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+/* recipe */
+.recipe { position: relative; background-color: var(--paper); background-image: var(--grain), repeating-linear-gradient(transparent 0 33px, rgba(59,95,132,.26) 33px 34px); border-left: 6px double var(--red); padding: 22px clamp(18px, 3vw, 32px) 26px; box-shadow: 3px 5px 0 rgba(0,0,0,.3); color: var(--ink); }
+.recipe::before { content: ""; position: absolute; top: -8px; left: 50%; width: 100px; height: 16px; margin-left: -50px; background: rgba(206,188,128,.85); transform: rotate(-2deg); }
+.recipe h2 { margin: 0; font: 400 clamp(1.8rem, 4.6vw, 2.8rem)/1.05 var(--f-display); color: var(--red); }
+.recipe .note-l { margin: 6px 0 14px; font: 400 .95rem/1.3 var(--f-label); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.rcols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.rcols h3 { margin: 0 0 4px; font: 400 1.2rem/1.2 var(--f-label); letter-spacing: .06em; text-transform: uppercase; }
+.rcols p, .rcols li { font: 400 1.25rem/34px var(--f-hand); margin: 0; }
+.rcols ul, .rcols ol { margin: 0; padding-left: 1.2em; }
+
+/* hidden stickers */
+.sticker { width: 52px; height: 52px; border-radius: 50%; padding: 0; border: 3px solid #fff; background: #f7f1de; box-shadow: 0 0 0 1px rgba(0,0,0,.3), 2px 3px 0 rgba(0,0,0,.3); display: grid; place-items: center; cursor: pointer; overflow: hidden; transition: opacity .15s; }
+.sticker svg { width: 78%; height: 78%; display: block; }
+.sticker.spot { opacity: .6; filter: grayscale(1); flex: none; }
+.sticker.spot:hover, .sticker.spot:focus-visible { opacity: 1; filter: none; }
+.sticker.spot.collected { opacity: 1; filter: none; box-shadow: 0 0 0 3px #4d7561, 2px 3px 0 rgba(0,0,0,.3); }
+.desk .sticker { border-color: var(--paper); }
+
+/* dock */
+.dock { position: fixed; z-index: 30; left: 50%; transform: translateX(-50%); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: flex-end; gap: 6px; padding: 8px 10px 6px; max-width: calc(100vw - 24px); background-color: var(--wood); background-image: var(--grain); border: 4px solid #54391f; border-radius: 10px; box-shadow: 0 6px 0 rgba(0,0,0,.3); }
+.dk { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 58px; min-height: 58px; padding: 4px 8px; background: none; border: 0; border-radius: 6px; color: var(--chalk); font: 400 .9rem/1 var(--f-label); letter-spacing: .06em; cursor: pointer; }
+.dk:hover { background: rgba(255,255,255,.08); }
+.dk[aria-current="page"], .dk[aria-expanded="true"] { background: rgba(255,255,255,.14); box-shadow: inset 0 -3px 0 var(--chalk-y); }
+.dk .ico { display: grid; place-items: center; width: 34px; height: 32px; transition: transform .15s; }
+.dk:hover .ico { transform: translateY(-3px); }
+.dk .ico.bump { animation: bump .6s ease; }
+@keyframes bump { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-9px) rotate(-6deg); } }
+.divider { align-self: stretch; width: 2px; margin: 4px 2px; background: rgba(0,0,0,.3); }
+.ico-poster { position: relative; width: 24px; height: 31px; background: #e6dcc0; box-shadow: 1px 2px 0 rgba(0,0,0,.4); transform: rotate(-4deg); }
+.ico-poster::before { content: ""; position: absolute; left: 3px; right: 3px; top: 10px; height: 6px; background: var(--blue); box-shadow: 0 9px 0 var(--red); }
+.ico-poster::after { content: ""; position: absolute; left: 5px; right: 5px; top: -3px; height: 6px; background: rgba(206,188,128,.9); }
+.ico-note { position: relative; width: 34px; height: 24px; border-radius: 6px; background: linear-gradient(var(--ink-soft), var(--ink-soft)) 6px 7px / 22px 2px no-repeat, linear-gradient(var(--ink-soft), var(--ink-soft)) 6px 13px / 15px 2px no-repeat, var(--paper); margin-bottom: 6px; }
+.ico-note::after { content: ""; position: absolute; left: 7px; bottom: -9px; border: 6px solid transparent; border-top-color: var(--paper); border-bottom: 0; }
+.ico-sheet { width: 25px; height: 32px; background: linear-gradient(var(--red), var(--red)) 4px 5px / 11px 3px no-repeat, repeating-linear-gradient(transparent 0 4px, rgba(42,39,35,.4) 4px 6px) 4px 12px / 17px 17px no-repeat, var(--paper); box-shadow: 1px 2px 0 rgba(0,0,0,.4); }
+.ico-recipe { width: 34px; height: 24px; background: linear-gradient(90deg, transparent 6px, var(--red) 6px 7px, transparent 7px), repeating-linear-gradient(transparent 0 5px, rgba(59,95,132,.5) 5px 6px), var(--paper); box-shadow: 1px 2px 0 rgba(0,0,0,.4); transform: rotate(3deg); }
+.mini { display: block; width: 34px; height: 25px; background: var(--paper); border: 2px solid var(--blue); border-radius: 3px; overflow: hidden; transform: rotate(-4deg); }
+.mbar { display: block; height: 7px; background: var(--blue); }
+.mdots { display: flex; justify-content: center; gap: 3px; padding-top: 4px; }
+.mdots i { width: 5px; height: 5px; border-radius: 50%; border: 1px solid rgba(42,39,35,.55); }
+.mdots i.on { background: var(--stamp); border-color: var(--stamp); }
+.badge { position: absolute; top: 2px; right: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--chalk-y); border: 2px solid var(--wood); }
+
+/* membership card popover */
+.cardpop { position: fixed; z-index: 25; left: 50%; transform: translateX(-50%); bottom: calc(118px + env(safe-area-inset-bottom, 0px)); width: min(340px, calc(100vw - 32px)); max-height: calc(100vh - 160px); max-height: calc(100dvh - 160px); overflow: auto; }
+.card { position: relative; background-color: var(--paper); background-image: var(--grain); border: 3px double var(--blue); color: var(--ink); padding: 0 0 6px; box-shadow: 3px 6px 0 rgba(0,0,0,.4); }
+.card-top { background: var(--blue); color: #f3ecd8; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 0 4px 0 14px; min-height: 44px; font: 400 1rem/1 var(--f-label); letter-spacing: .12em; text-transform: uppercase; }
+.card-top .x { min-width: 44px; min-height: 44px; background: none; border: 0; color: #f3ecd8; font: 400 1.7rem/1 var(--f-label); cursor: pointer; }
+.card-body { padding: 12px 14px 0; }
+.card h2 { margin: 0 0 8px; font: 400 1.35rem/1.15 var(--f-label); letter-spacing: .04em; }
+.card .small { margin: 12px 0 6px; font: 400 .95rem/1.2 var(--f-label); letter-spacing: .08em; text-transform: uppercase; }
+.stamps { list-style: none; margin: 0 0 12px; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.slot { position: relative; aspect-ratio: 1; border: 2px dashed rgba(42,39,35,.5); border-radius: 50%; display: grid; place-items: center; font: 400 .78rem/1 var(--f-label); letter-spacing: .04em; color: rgba(42,39,35,.62); text-align: center; }
+.slot.on { border: 3px solid var(--stamp); color: var(--stamp); mix-blend-mode: multiply; transform: rotate(var(--rot, -8deg)); }
+.slot.next { border-style: dotted; }
+.ledger { margin: 0; display: grid; gap: 4px; }
+.ledger div { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; border-bottom: 1px dotted rgba(42,39,35,.5); padding-bottom: 2px; }
+.ledger dt { font: 400 1rem/1.2 var(--f-label); letter-spacing: .04em; }
+.ledger dd { margin: 0; font: 700 1.45rem/1 var(--f-hand); white-space: nowrap; }
+.album { list-style: none; margin: 0 0 4px; padding: 0; display: flex; gap: 10px; }
+.aempty { width: 52px; height: 52px; border: 2px dashed rgba(42,39,35,.5); border-radius: 50%; display: grid; place-items: center; font: 400 1.3rem/1 var(--f-label); color: rgba(42,39,35,.55); }
+.card .hint { margin: 10px 0 0; font-size: .9rem; color: var(--ink-soft); }
+.reward { margin: 12px 14px 0; background-color: var(--slate); background-image: var(--grain); color: var(--chalk); padding: 12px; }
+.reward h3 { margin: 0 0 6px; font: 400 1.15rem/1.15 var(--f-label); letter-spacing: .06em; text-transform: uppercase; color: var(--chalk-y); }
+.reward p { margin: 0 0 10px; font-size: .95rem; }
+.reward .btn { padding: 10px 14px; min-height: 44px; font-size: .95rem; }
+.reset { display: block; margin: 6px 14px 0; background: none; border: 0; padding: 8px 0; min-height: 44px; font: 400 .95rem/1 var(--f-label); letter-spacing: .08em; color: var(--ink); text-decoration: underline; cursor: pointer; }
+
+.toast { position: fixed; left: 50%; top: calc(16px + env(safe-area-inset-top, 0px)); transform: translate(-50%, -20px); background-color: var(--paper); color: var(--ink); border: 2px solid var(--ink); padding: 10px 16px; border-radius: 3px; max-width: min(92vw, 440px); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 40; box-shadow: 3px 4px 0 rgba(0,0,0,.3); }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 960px) {
+  .cards { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 880px) {
+  .notice { grid-template-columns: minmax(0, 1fr); }
+  .cta-col { grid-auto-flow: column; grid-auto-columns: 1fr; }
+  .notes, .rgrid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 700px) {
+  .rcols { grid-template-columns: minmax(0, 1fr); }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wall { border-inline-width: 10px; }
+  .cta-col { grid-auto-flow: row; }
+  .rows li { grid-template-columns: 92px minmax(0, 1fr); }
+  .glow { height: 760px; }
+}
+@media (max-width: 440px) {
+  .dock { gap: 2px; padding: 6px 6px 4px; }
+  .dk { min-width: 48px; padding: 4px 5px; font-size: .74rem; letter-spacing: .02em; }
+  .did div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+</style>
+
 </head>
 <body>
-  <div class="stage">
-    <div class="window">
-
-      <div class="chrome">
-        <header class="topbar">
-          <a class="resume-link" href="https://docs.google.com/document/d/1WSfb6hgoUjNZOP1fqmS5e2srcMs2SCPVX47X6-DYnZE/edit?usp=sharing" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
-          <nav class="tabs" aria-label="Primary">
-            <a class="tabs__me" href="#work">
-              <img src="assets/face-28.png" width="28" height="28" alt="">
-              <span class="tabs__name">Daniel</span>
-            </a>
-            <a href="#work" data-tab aria-current="true">Work</a>
-            <a href="#testimonial" data-tab>Testimonial</a>
-            <a href="#experience" data-tab>Experience</a>
-            <a href="#connect" data-tab>Connect</a>
-          </nav>
-          <button class="summary-btn" id="summary-toggle" type="button" aria-expanded="true" aria-controls="summary-panel">
-            <span class="summary-btn__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
-            <span>Summary</span>
-          </button>
-        </header>
-      </div>
-
-      <div class="content is-open" id="content">
-
-        <main class="page" id="page">
-          <section class="section" id="work" aria-labelledby="work-title">
-            <div class="page__heading">
-              <h1 id="work-title">I design B2B products that move revenue.</h1>
-              <p class="intro">Here’s the work I’ve shipped, and what I’m building now.</p>
-            </div>
-
-            <ul class="grid">
-            <li>
-              <article class="card">
-                <div class="card__visual"><img src="assets/project-dell-home.png" alt="Dell Premier homepage redesign screenshot" width="1920" height="1227">
-                  <span class="card__badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></svg>President's Award</span>
-                </div>
-                <div class="card__body">
-                  <h2 class="card__title"><a class="card__link" href="work/dell-premier-homepage.html">Dell Premier Homepage Redesign</a></h2>
-                  <p class="card__role">Research co-lead &amp; product design</p>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article class="card">
-                <div class="card__visual card__visual--top"><img src="assets/project-dell-landing.png" alt="Dell Premier landing page redesign screenshot" width="1600" height="1766"></div>
-                <div class="card__body">
-                  <h2 class="card__title"><a class="card__link" href="work/premier-landing-page.html">Dell Premier Landing Page Redesign</a></h2>
-                  <p class="card__role">Project lead &amp; product design</p>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article class="card">
-                <div class="card__visual card__visual--contain"><img src="assets/project-shelter.jpg" alt="ShelterTech accessibility audit project screenshot" width="2048" height="1143"></div>
-                <div class="card__body">
-                  <h2 class="card__title"><a class="card__link" href="work/shelter-tech-accessibility.html">Accessibility Audit for ShelterTech.org</a></h2>
-                  <p class="card__role">Accessibility design lead</p>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article class="card">
-                <div class="card__visual card__visual--contain card__visual--privy"><img src="assets/project-privy.jpg" alt="Privy brand card: privacy controls for location, contacts, browsing, photos and health" width="1600" height="900"></div>
-                <div class="card__body">
-                  <h2 class="card__title"><a class="card__link" href="work/privy.html">Privy</a></h2>
-                  <p class="card__role">Concept · In progress</p>
-                </div>
-              </article>
-            </li>
-            </ul>
-          </section>
-
-          <div class="tint">
-          <section class="section" id="testimonial" aria-labelledby="testimonial-title">
-            <div class="section__head">
-              <p class="label">Testimonial</p>
-              <h2 id="testimonial-title">Words from teammates</h2>
-            </div>
-            <div class="quotes">
-              <figure class="quote">
-                <blockquote><p>“When I arrived at the meeting, Daniel already had mocked up some ideas and had done competitive research. <mark class="quote__highlight">This is regular behavior of Daniel, he’s always step ahead.</mark>”</p></blockquote>
-                <figcaption><strong>Josh B</strong><span>Technical Staff</span></figcaption>
-              </figure>
-              <figure class="quote">
-                <blockquote><p>“Dongyeon is a rising star. <mark class="quote__highlight">His dedication, consistency, and speed are unparalleled.</mark>”</p></blockquote>
-                <figcaption><strong>Clint B</strong><span>Principal Product Designer</span></figcaption>
-              </figure>
-            </div>
-          </section>
-
-          <section class="section" id="experience" aria-labelledby="experience-title">
-            <div class="section__head">
-              <p class="label">Experience</p>
-              <h2 id="experience-title">Work, school &amp; certifications</h2>
-            </div>
-            <ul class="timeline">
-              <li><span class="timeline__when">2026 – Current</span><div><p class="timeline__role">Masters in Human Computer Interaction Design</p><p class="timeline__org">University of Washington</p></div></li>
-              <li><span class="timeline__when">2023 – 2026</span><div><p class="timeline__role">User Interface Engineer 2</p><p class="timeline__org">Dell Technologies</p></div></li>
-              <li><span class="timeline__when">2022 – 2023</span><div><p class="timeline__role">Product Designer</p><p class="timeline__org">ShelterTech</p></div></li>
-              <li><span class="timeline__when">2021 – 2023</span><div><p class="timeline__role">Analyst</p><p class="timeline__org">Dell Technologies</p></div></li>
-              <li><span class="timeline__when">2018 – 2021</span><div><p class="timeline__role">B.S. Information Science</p><p class="timeline__org">University of Maryland</p></div></li>
-              <li><span class="timeline__when">2023</span><div><p class="timeline__role">Trusted Tester v5</p><p class="timeline__org">Department of Homeland Security</p></div></li>
-              <li><span class="timeline__when">2023</span><div><p class="timeline__role">CPACC</p><p class="timeline__org">IAAP</p></div></li>
-              <li><span class="timeline__when">2021</span><div><p class="timeline__role">Google UX Certificate</p><p class="timeline__org">Coursera</p></div></li>
-            </ul>
-          </section>
-
-          <section class="section" id="connect" aria-labelledby="connect-title">
-            <div class="section__head">
-              <p class="label">Connect</p>
-              <h2 id="connect-title">Thank you!</h2>
-            </div>
-            <p class="connect__text">I'm always excited to connect with people who care about inclusive, impactful design. Let's connect and create equitable experiences together.</p>
-            <div class="ctas">
-              <a class="btn btn--primary" href="https://calendly.com/dseo1212/30min">Let's connect</a>
-            </div>
-          </section>
-        </div>
-        </main>
-
-        <aside class="panel" id="summary-panel" aria-labelledby="summary-title">
-          <div class="panel__inner">
-            <div class="panel__header reveal" style="--d: 0s">
-              <h2 id="summary-title" tabindex="-1">Summary</h2>
-              <button class="panel__close" id="summary-close" type="button" aria-label="Close summary">×</button>
-            </div>
-
-            <div class="profile reveal" style="--d: 0.08s">
-              <video class="avatar-video" src="assets/daniel-icon.mp4" width="56" height="56" autoplay muted playsinline aria-label="Daniel"></video>
-              <div>
-                <p class="profile__name">Dongyeon (Daniel) Seo</p>
-                <p class="profile__role">Product Designer · MHCI+D @ UW</p>
-              </div>
-            </div>
-
-            <section class="box reveal" style="--d: 0.16s" aria-labelledby="about-label">
-              <h3 class="label" id="about-label">About</h3>
-              <p>MHCI+D student at UW with <strong> 5 years at Dell </strong> as a product designer. I design inclusive, accessible experiences and tie them to revenue and growth.</p>
-            </section>
-
-            <section class="box reveal" style="--d: 0.26s" aria-labelledby="acc-label">
-              <h3 class="label" id="acc-label">Key accomplishments</h3>
-              <ul class="stat-list">
-                <li class="stat reveal" style="--d: 0.3s"><span class="stat__num">+9.9%</span><span class="stat__text">Average order value, +7.1% revenue per visit</span><span class="stat__src">Dell Premier Homepage</span></li>
-                <li class="stat reveal" style="--d: 0.36s"><span class="stat__num">2.8×</span><span class="stat__text">New account submissions, +19% sign-ins</span><span class="stat__src">Dell Premier Landing Page</span></li>
-                <li class="stat reveal" style="--d: 0.42s"><span class="stat__num">37% → 0%</span><span class="stat__text">WCAG accessibility failures</span><span class="stat__src">ShelterTech</span></li>
-                <li class="stat reveal" style="--d: 0.48s"><span class="stat__num">2</span><span class="stat__text">Awards: President’s &amp; Game Changer</span><span class="stat__src">Dell</span></li>
-              </ul>
-            </section>
-
-            <section class="box reveal" style="--d: 0.66s" aria-labelledby="skills-label">
-              <h3 class="label" id="skills-label">Skills &amp; certifications</h3>
-              <ul class="skill-groups">
-                <li class="skill-group"><span class="skill-group__label">Design</span><span class="skill-group__items"> IX design · User research · Systems Thinking · Vibe coding</span></li>
-                <li class="skill-group"><span class="skill-group__label">Accessibility</span><span class="skill-group__items">CPACC · Trusted Tester V5 </span></li>
-              </ul>
-            </section>
-
-            <div class="ctas reveal" style="--d: 1.05s">
-              <a class="btn btn--primary" href="https://calendly.com/dseo1212/30min">Let's chat</a>
-              <a class="btn btn--secondary" href="https://docs.google.com/document/d/1WSfb6hgoUjNZOP1fqmS5e2srcMs2SCPVX47X6-DYnZE/edit?usp=sharing">View resume</a>
-            </div>
-          </div>
-        </aside>
-
+<main>
+  <div id="scene-out" class="facade">
+    <div class="signboard">
+      <div class="sign-main">
+        <h1><button type="button" class="sign-btn" data-go="home"><span class="vh">Daniel Seo, </span>Comic Room<span class="vh">. Go to the home page.</span></button></h1>
+        <p aria-hidden="true">Daniel Seo</p>
       </div>
     </div>
+    <div class="roof" aria-hidden="true"></div>
+    <div class="beam" aria-hidden="true"></div>
+    <div class="wall">
+      <section class="view" id="view-home" aria-labelledby="home-h">
+        <header class="notice">
+          <div>
+            <p class="eyebrow">Product Designer &middot; 5 years of experience</p>
+            <h2 id="home-h" tabindex="-1" data-focus>I design B2B products that move revenue.</h2>
+            <p class="lede">I&rsquo;m Daniel Seo. For 5 years I&rsquo;ve designed accessible, inclusive B2B experiences at Dell Technologies and ShelterTech, and tied them to revenue and growth. I&rsquo;m now in the MHCI+D master&rsquo;s program (Human-Computer Interaction + Design) at the University of Washington.</p>
+          </div>
+          <div class="cta-col">
+            <button type="button" class="btn" data-go="projects">Come inside</button>
+            <a class="btn ghost" href="https://calendly.com/dseo1212/30min" target="_blank" rel="noopener">Book a chat</a>
+          </div>
+        </header>
+        <section aria-labelledby="stats-h">
+          <div class="painted">
+            <div>
+              <h2 id="stats-h">Results at a glance</h2>
+            </div>
+          </div>
+          <ul class="tiles">
+            <li><div class="tile"><span class="tile-n long">5 years</span><span class="tile-l">Product design in tech</span><span class="tile-c">Dell Technologies, ShelterTech</span></div></li>
+            <li><div class="tile"><span class="tile-n long">2 awards</span><span class="tile-l">Awards at Dell</span><span class="tile-c">President&rsquo;s Award, Game Changer Award</span></div></li>
+            <li><div class="tile"><span class="tile-n">+9.9%</span><span class="tile-l">Average order value</span><span class="tile-c">Dell Premier homepage</span></div></li>
+            <li><div class="tile"><span class="tile-n">+7.1%</span><span class="tile-l">Revenue per visit</span><span class="tile-c">Dell Premier homepage</span></div></li>
+            <li><div class="tile"><span class="tile-n">2.8&times;</span><span class="tile-l">New account submissions</span><span class="tile-c">Dell Premier landing page</span></div></li>
+            <li><div class="tile"><span class="tile-n">+19%</span><span class="tile-l">Sign-ins</span><span class="tile-c">Dell Premier landing page</span></div></li>
+            <li><div class="tile"><span class="tile-n long">37% &rarr; 0%</span><span class="tile-l">WCAG failures</span><span class="tile-c">ShelterTech accessibility audit</span></div></li>
+            <li><div class="tile"><span class="tile-n">2</span><span class="tile-l">Accessibility certifications</span><span class="tile-c">CPACC, DHS Trusted Tester v5</span></div></li>
+          </ul>
+        </section>
+      </section>
+    </div>
+    <div class="step" aria-hidden="true"></div>
   </div>
 
-  <script src="script.js?v=13"></script>
+  <div id="scene-in" class="room" hidden>
+    <header class="topbar">
+      <button type="button" class="mark" data-go="home"><span class="vh">Daniel Seo Comic Room. Step outside to the home page.</span><span class="mark-a" aria-hidden="true">Comic Room</span><span class="mark-b" aria-hidden="true">Daniel Seo</span></button>
+      <a class="toplink" href="https://calendly.com/dseo1212/30min" target="_blank" rel="noopener">Book a chat</a>
+    </header>
+    <div class="glow" aria-hidden="true"></div>
+    <button type="button" class="lamp" id="lamp" aria-pressed="true" aria-label="Lamp light: on. Click to turn off."></button>
+
+    <div class="room-body">
+      <section class="view" id="view-projects" aria-labelledby="proj-h" hidden>
+        <div class="painted">
+          <div>
+            <h2 id="proj-h" tabindex="-1" data-focus>Projects</h2>
+            <p class="hint">Four case studies. Each card says what I did and what happened. Open one to read the full story and get your card stamped.</p>
+          </div>
+        </div>
+        <ul class="cards" id="cards"></ul>
+      </section>
+
+      <section class="view" id="view-testimonials" aria-labelledby="test-h" hidden>
+        <div class="painted">
+          <div>
+            <h2 id="test-h" tabindex="-1" data-focus>Words from teammates</h2>
+            <p class="hint">Notes left at the counter.</p>
+          </div>
+        </div>
+        <ul class="notes">
+          <li>
+            <figure class="note">
+              <blockquote><p>&ldquo;When I arrived at the meeting, Daniel already had mocked up some ideas and had done competitive research. <mark>This is regular behavior of Daniel, he&rsquo;s always step ahead.</mark>&rdquo;</p></blockquote>
+              <figcaption>Josh B<span>Technical Staff</span></figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="note">
+              <blockquote><p>&ldquo;Dongyeon is a rising star. <mark>His dedication, consistency, and speed are unparalleled.</mark>&rdquo;</p></blockquote>
+              <figcaption>Clint B<span>Principal Product Designer</span></figcaption>
+              <button type="button" class="sticker spot" data-sticker="tteok" data-spot></button>
+            </figure>
+          </li>
+        </ul>
+      </section>
+
+      <section class="view" id="view-resume" aria-labelledby="res-h" hidden>
+        <div class="painted">
+          <div>
+            <h2 id="res-h" tabindex="-1" data-focus>Resume</h2>
+            <p class="hint">The short version. The full resume opens in a new tab.</p>
+          </div>
+          <div class="cta-row">
+            <a class="btn" href="https://docs.google.com/document/d/1WSfb6hgoUjNZOP1fqmS5e2srcMs2SCPVX47X6-DYnZE/edit?usp=sharing" target="_blank" rel="noopener">Open full resume &#8599;</a>
+          </div>
+        </div>
+        <div class="rgrid">
+          <div class="stack">
+            <section class="rcard" aria-labelledby="work-h">
+              <h3 id="work-h">Work</h3>
+              <ul class="rows">
+                <li><span class="yr">2023 &ndash; 2026</span><span class="what"><strong>User Interface Engineer 2</strong>Dell Technologies</span></li>
+                <li><span class="yr">2022 &ndash; 2023</span><span class="what"><strong>Product Designer</strong>ShelterTech</span></li>
+                <li><span class="yr">2021 &ndash; 2023</span><span class="what"><strong>Analyst</strong>Dell Technologies</span></li>
+              </ul>
+            </section>
+            <section class="rcard" aria-labelledby="edu-h">
+              <h3 id="edu-h">School</h3>
+              <ul class="rows">
+                <li><span class="yr">2026 &ndash; Current</span><span class="what"><strong>Masters in Human Computer Interaction Design</strong>University of Washington</span></li>
+                <li><span class="yr">2018 &ndash; 2021</span><span class="what"><strong>B.S. Information Science</strong>University of Maryland</span></li>
+              </ul>
+            </section>
+          </div>
+          <div class="stack">
+            <section class="rcard" aria-labelledby="cert-h">
+              <h3 id="cert-h">Certifications</h3>
+              <ul class="rows">
+                <li><span class="yr">2023</span><span class="what"><strong>Trusted Tester v5</strong>Department of Homeland Security</span></li>
+                <li><span class="yr">2023</span><span class="what"><strong>CPACC</strong>IAAP</span></li>
+                <li><span class="yr">2021</span><span class="what"><strong>Google UX Certificate</strong>Coursera</span></li>
+              </ul>
+            </section>
+            <section class="rcard" aria-labelledby="skill-h">
+              <h3 id="skill-h">Skills</h3>
+              <dl class="skills">
+                <div><dt>Design</dt><dd>IX design, user research, systems thinking, vibe coding</dd></div>
+                <div><dt>Accessibility</dt><dd>CPACC, Trusted Tester v5</dd></div>
+              </dl>
+            </section>
+          </div>
+        </div>
+        <div class="desk">
+          <div>
+            <h2>Ready to check out?</h2>
+            <p>Thirty minutes, free. Bring a design problem or a hiring question.</p>
+          </div>
+          <div class="acts">
+            <a class="btn paper" href="https://calendly.com/dseo1212/30min" target="_blank" rel="noopener">Book a chat</a>
+            <button type="button" class="sticker spot" data-sticker="shin" data-spot></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-recipe" aria-labelledby="recipe-h" hidden>
+        <div class="recipe">
+          <h2 id="recipe-h" tabindex="-1" data-focus>Grandma&rsquo;s recipe</h2>
+          <p class="note-l">Placeholder. The real recipe goes here.</p>
+          <div class="rcols">
+            <div><h3>The story</h3><p>A few lines about Grandma, the dish and why it matters to me.</p></div>
+            <div><h3>Ingredients</h3><ul><li>Ingredient one</li><li>Ingredient two</li><li>Ingredient three</li></ul></div>
+            <div><h3>Steps</h3><ol><li>First step</li><li>Second step</li><li>Third step</li></ol></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<div class="cardpop" id="cardpop" role="dialog" aria-label="Membership card" hidden>
+  <div class="card">
+    <div class="card-top"><span>Comic Room &middot; No. 0001</span><button type="button" class="x" id="card-close" aria-label="Close membership card">&times;</button></div>
+    <div class="card-body">
+      <h2>Membership card</h2>
+      <ol class="stamps" id="stamps"></ol>
+      <div role="status">
+        <dl class="ledger">
+          <div><dt>Posters rented</dt><dd id="rent-count">0 / 4</dd></div>
+          <div><dt>Stickers found</dt><dd id="sticker-count">0 / 3</dd></div>
+        </dl>
+      </div>
+      <p class="small">Sticker album</p>
+      <ul class="album" id="album"></ul>
+      <p class="hint" id="card-hint"></p>
+    </div>
+    <div class="reward" id="reward" hidden>
+      <h3>Reward unlocked</h3>
+      <p>You rented every poster and found all three stickers. Grandma&rsquo;s recipe is yours.</p>
+      <button type="button" class="btn paper" data-go="recipe">See Grandma&rsquo;s recipe</button>
+    </div>
+    <button type="button" class="reset" id="reset">Return all posters and stickers</button>
+  </div>
+</div>
+
+<nav class="dock" aria-label="Main">
+  <button type="button" class="dk" data-go="projects"><span class="ico"><span class="ico-poster"></span></span>Projects</button>
+  <button type="button" class="dk" data-go="testimonials"><span class="ico"><span class="ico-note"></span></span>Testimonials</button>
+  <button type="button" class="dk" data-go="resume"><span class="ico"><span class="ico-sheet"></span></span>Resume</button>
+  <span class="divider" aria-hidden="true"></span>
+  <button type="button" class="dk" id="dock-recipe" data-go="recipe" hidden><span class="ico"><span class="ico-recipe"></span></span>Recipe</button>
+  <button type="button" class="dk" id="card-chip" aria-expanded="false" aria-controls="cardpop">
+    <span class="ico" id="chip-ico"><span class="mini"><span class="mbar"></span><span class="mdots" id="mdots"></span></span></span>Card
+    <span class="badge" id="chip-badge" hidden></span>
+  </button>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var PROJECTS = [
+    {
+      id: 'home', abbr: 'Home', rot: '-9deg', mock: 'mk-home',
+      name: 'Dell Premier Homepage Redesign', title: 'Premier Homepage Redesign',
+      org: 'Dell Technologies', pill: 'President’s Award',
+      stat: '+9.9%', statSm: false, statLabel: 'Average order value',
+      chips: ['+7.1% revenue per visit'],
+      role: 'Research co-lead & product design',
+      result: '+9.9% average order value and +7.1% revenue per visit',
+      synopsis: 'A research-led redesign of the Dell Premier homepage for business buyers. Orders got bigger, every visit earned more, and the team took home a President’s Award.',
+      url: 'https://www.dongyeonseo.com/work/dell-premier-homepage.html'
+    },
+    {
+      id: 'landing', abbr: 'Part II', rot: '7deg', mock: 'mk-landing',
+      name: 'Dell Premier Landing Page Redesign', title: 'Premier Landing Page Redesign',
+      org: 'Dell Technologies', pill: 'Part II',
+      stat: '2.8×', statSm: false, statLabel: 'New account submissions',
+      chips: ['+19% sign-ins'],
+      role: 'Project lead & product design',
+      result: '2.8× new account submissions and +19% sign-ins',
+      synopsis: 'The sequel. I led the redesign of the Dell Premier landing page, and 2.8 times as many people submitted new account requests.',
+      url: 'https://www.dongyeonseo.com/work/premier-landing-page.html'
+    },
+    {
+      id: 'shelter', abbr: 'Audit', rot: '-5deg', mock: 'mk-shelter',
+      name: 'Accessibility Audit for ShelterTech.org', title: 'Accessibility Audit for ShelterTech.org',
+      org: 'ShelterTech', pill: 'Accessibility',
+      stat: '37% → 0%', statSm: true, statLabel: 'WCAG failures',
+      chips: ['Accessibility audit'],
+      role: 'Accessibility design lead',
+      result: 'WCAG failures down from 37% to 0%',
+      synopsis: 'I led an accessibility audit of ShelterTech.org. By the end, the site went from 37% WCAG failures to none.',
+      url: 'https://www.dongyeonseo.com/work/shelter-tech-accessibility.html'
+    },
+    {
+      id: 'privy', abbr: 'Privy', rot: '10deg', mock: 'mk-privy',
+      name: 'Privy', title: 'Privy',
+      org: 'Concept', pill: 'In progress',
+      stat: 'In progress', statSm: true, statLabel: 'Privacy controls for location, contacts, browsing, photos and health',
+      chips: [],
+      role: 'Concept, in progress',
+      result: 'Still being made. New chapters land here.',
+      synopsis: 'One place to control what your apps know about you: location, contacts, browsing, photos and health.',
+      url: 'https://www.dongyeonseo.com/work/privy.html'
+    }
+  ];
+  var STICKERS = [
+    {
+      id: 'lamp', name: 'Lamp light', gloss: '',
+      svg: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3v11" stroke="#1d1a17" stroke-width="2"/><path d="M9 29a15 15 0 0 1 30 0z" fill="#c79a2c"/><path d="M14 34l-5 9M24 34v10M34 34l5 9" stroke="#d9b64a" stroke-width="3.5" stroke-linecap="round"/></svg>'
+    },
+    {
+      id: 'tteok', name: 'Tteokbokki', gloss: '',
+      svg: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 25h38a19 15 0 0 1-38 0z" fill="#6f6a5e"/><ellipse cx="24" cy="25" rx="19" ry="6" fill="#c4402a"/><g fill="#f1dcbc" stroke="#a8452f" stroke-width="1"><rect x="11" y="19" width="14" height="5.5" rx="2.7" transform="rotate(-14 18 21)"/><rect x="24" y="20.5" width="14" height="5.5" rx="2.7" transform="rotate(12 31 23)"/><rect x="16" y="24" width="13" height="5" rx="2.5" transform="rotate(4 22 26)"/></g><path d="M18 14l9 0-3 6z" fill="#d9b27a" stroke="#a8452f" stroke-width="1" stroke-linejoin="round"/><circle cx="33" cy="18" r="1.6" fill="#4d7561"/><circle cx="12" cy="24" r="1.4" fill="#4d7561"/><circle cx="29" cy="29" r="1.4" fill="#4d7561"/><path d="M19 7q-3 3 0 5M26 5q-3 3 0 6M33 7q-3 3 0 5" stroke="#8a8478" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>'
+    },
+    {
+      id: 'shin', name: 'Shin ramen cup', gloss: '',
+      svg: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M15 3q-4 4 0 8t0 6M24 2q-4 4 0 8t0 7M33 3q-4 4 0 8t0 6" stroke="#6f6a5e" stroke-width="2" fill="none" stroke-linecap="round"/><ellipse cx="24" cy="21" rx="15" ry="3.2" fill="#e8b24a"/><path d="M9 21q15 6 30 0" stroke="#c9852e" stroke-width="1.6" fill="none"/><path d="M9 20.5h30l-4 23H13z" fill="#b3281f"/><path d="M10.6 29h26.8l-.8 5H11.4z" fill="#2a2723"/><circle cx="24" cy="31.5" r="2.4" fill="#e6cf78"/><path d="M34 10l-14 12M37 11l-14 12" stroke="#8a5a36" stroke-width="1.6" stroke-linecap="round"/></svg>'
+    }
+  ];
+  var VIEWS = ['home', 'projects', 'testimonials', 'resume', 'recipe'];
+  var KEY = 'daniel-comic-room-v1';
+  var ids = PROJECTS.map(function (p) { return p.id; });
+  var sids = STICKERS.map(function (s) { return s.id; });
+  var state = { rented: [], stickers: [] };
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) {
+      var parsed = JSON.parse(raw);
+      if (parsed && Array.isArray(parsed.rented) && Array.isArray(parsed.stickers)) {
+        state.rented = parsed.rented.filter(function (x) { return ids.indexOf(x) > -1; });
+        state.stickers = parsed.stickers.filter(function (x) { return sids.indexOf(x) > -1; });
+      }
+    }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var cardsEl = $('#cards'), stampsEl = $('#stamps'), albumEl = $('#album');
+  var rentCount = $('#rent-count'), stickerCount = $('#sticker-count'), reward = $('#reward'), hint = $('#card-hint');
+  var pop = $('#cardpop'), chip = $('#card-chip'), chipIco = $('#chip-ico'), mdots = $('#mdots'), badge = $('#chip-badge'), dockRecipe = $('#dock-recipe');
+  var sceneOut = $('#scene-out'), sceneIn = $('#scene-in');
+  var toastEl = $('#toast'), toastTimer = null;
+  var current = 'home', entered = false;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var HINT = 'Rent every poster and find all 3 hidden stickers to unlock a reward. They are tucked away around the shop, so look on every page. Click a sticker again to put it back.';
+
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('on'); }, 3400);
+  }
+  function byId(id) { return PROJECTS.filter(function (p) { return p.id === id; })[0]; }
+  function sById(id) { return STICKERS.filter(function (s) { return s.id === id; })[0]; }
+  function isRented(id) { return state.rented.indexOf(id) > -1; }
+  function hasSticker(id) { return state.stickers.indexOf(id) > -1; }
+  function unlocked() { return state.rented.length === PROJECTS.length && state.stickers.length === STICKERS.length; }
+  function bump() {
+    if (reduce) return;
+    chipIco.classList.remove('bump');
+    void chipIco.offsetWidth;
+    chipIco.classList.add('bump');
+  }
+
+  /* pages and scenes */
+  function show(view, userAction) {
+    if (VIEWS.indexOf(view) === -1 || (view === 'recipe' && !unlocked())) view = 'home';
+    var inside = view !== 'home', wasInside = document.body.classList.contains('inside');
+    current = view;
+    VIEWS.forEach(function (v) { $('#view-' + v).hidden = (v !== view); });
+    sceneOut.hidden = inside;
+    sceneIn.hidden = !inside;
+    document.body.classList.toggle('inside', inside);
+    $$('.dk[data-go]').forEach(function (b) {
+      if (b.dataset.go === view) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
+    });
+    closeCard(false);
+    window.scrollTo(0, 0);
+    if (userAction) {
+      var h = $('#view-' + view + ' [data-focus]');
+      if (h) h.focus({ preventScroll: true });
+      if (inside && !wasInside && !entered) { entered = true; toast('Ding-a-ling! Welcome in.'); }
+    }
+  }
+  function go(view) {
+    try { if (location.hash.slice(1) !== view) location.hash = view; } catch (e) {}
+    show(view, true);
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-go]');
+    if (b) go(b.dataset.go);
+  });
+  window.addEventListener('hashchange', function () {
+    var v = location.hash.slice(1);
+    if (VIEWS.indexOf(v) > -1 && v !== current) show(v, true);
+  });
+
+  /* membership card popover */
+  function openCard() {
+    pop.hidden = false;
+    chip.setAttribute('aria-expanded', 'true');
+    $('#card-close').focus({ preventScroll: true });
+  }
+  function closeCard(restoreFocus) {
+    if (pop.hidden) return;
+    pop.hidden = true;
+    chip.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) chip.focus({ preventScroll: true });
+  }
+  chip.addEventListener('click', function () { if (pop.hidden) openCard(); else closeCard(true); });
+  $('#card-close').addEventListener('click', function () { closeCard(true); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCard(true); });
+  document.addEventListener('click', function (e) {
+    if (!pop.hidden && !pop.contains(e.target) && !chip.contains(e.target)) closeCard(false);
+  });
+
+  /* build */
+  PROJECTS.forEach(function (p) {
+    var li = document.createElement('li');
+    var chips = p.chips.map(function (c) { return '<span>' + c + '</span>'; }).join('');
+    li.innerHTML = '<article class="pcard p-' + p.id + '" data-id="' + p.id + '">' +
+      '<div class="cover" aria-hidden="true">' +
+        '<div class="c-text"><span class="c-stat' + (p.statSm ? ' sm' : '') + '">' + p.stat + '</span><span class="c-label">' + p.statLabel + '</span></div>' +
+        '<div class="mock ' + p.mock + '"></div>' +
+        (chips ? '<div class="c-chips">' + chips + '</div>' : '') +
+        '<span class="seen">Rented</span>' +
+      '</div>' +
+      '<div class="pbody">' +
+        '<div class="prow"><span class="org"><i></i>' + p.org + '</span><span class="pill">' + p.pill + '</span></div>' +
+        '<h3 class="ptitle"><a class="plink" href="' + p.url + '" target="_blank" rel="noopener" data-id="' + p.id + '">' + p.title + '<span class="vh"> (opens the full story in a new tab)</span></a></h3>' +
+        '<dl class="did"><div><dt>What I did</dt><dd>' + p.role + '</dd></div><div><dt>Result</dt><dd>' + p.result + '</dd></div></dl>' +
+        '<p class="psyn">' + p.synopsis + '</p>' +
+        '<span class="go" aria-hidden="true">Read the full story ↗</span>' +
+      '</div></article>';
+    cardsEl.appendChild(li);
+  });
+  PROJECTS.concat([{ id: 'next', abbr: 'Next' }]).forEach(function (p, i) {
+    var li = document.createElement('li');
+    li.className = 'slot' + (p.id === 'next' ? ' next' : '');
+    li.dataset.id = p.id;
+    li.innerHTML = '<span class="vh"></span><span class="mark" aria-hidden="true">' + (i + 1) + '</span>';
+    stampsEl.appendChild(li);
+  });
+  PROJECTS.forEach(function () { mdots.appendChild(document.createElement('i')); });
+  $$('[data-spot]').forEach(function (btn) { btn.innerHTML = sById(btn.dataset.sticker).svg; });
+
+  /* render */
+  function renderCards() {
+    $$('.pcard').forEach(function (el) {
+      var r = isRented(el.dataset.id);
+      el.classList.toggle('rented', r);
+      el.querySelector('.go').textContent = r ? 'Stamped. Read it again ↗' : 'Read the full story ↗';
+    });
+  }
+  function renderMember() {
+    Array.prototype.forEach.call(stampsEl.children, function (li) {
+      var id = li.dataset.id, vh = li.querySelector('.vh'), mark = li.querySelector('.mark');
+      if (id === 'next') { vh.textContent = 'Slot 5: saved for the next release'; mark.textContent = 'Next'; return; }
+      var p = byId(id), on = isRented(id);
+      li.classList.toggle('on', on);
+      if (on) { li.style.setProperty('--rot', p.rot); }
+      mark.textContent = on ? p.abbr : String(ids.indexOf(id) + 1);
+      vh.textContent = p.name + (on ? ': stamped' : ': not rented yet');
+    });
+    Array.prototype.forEach.call(mdots.children, function (d, i) { d.classList.toggle('on', isRented(ids[i])); });
+    rentCount.textContent = state.rented.length + ' / ' + PROJECTS.length;
+    stickerCount.textContent = state.stickers.length + ' / ' + STICKERS.length;
+    albumEl.innerHTML = '';
+    STICKERS.forEach(function (s, i) {
+      var li = document.createElement('li');
+      if (hasSticker(s.id)) {
+        li.innerHTML = '<button type="button" class="sticker" data-sticker="' + s.id + '" data-album aria-label="' + s.name + s.gloss + ' sticker, collected. Click to put it back.">' + s.svg + '</button>';
+      } else {
+        li.innerHTML = '<span class="aempty"><span aria-hidden="true">?</span><span class="vh">Empty sticker slot ' + (i + 1) + '. Find a hidden sticker.</span></span>';
+      }
+      albumEl.appendChild(li);
+    });
+    $$('[data-spot]').forEach(function (btn) {
+      var s = sById(btn.dataset.sticker), on = hasSticker(s.id);
+      btn.classList.toggle('collected', on);
+      btn.setAttribute('aria-pressed', String(on));
+      btn.setAttribute('aria-label', 'Hidden sticker: ' + s.name + s.gloss + '. ' + (on ? 'Collected. Click to put it back.' : 'Click to collect it.'));
+    });
+    var lampOn = hasSticker('lamp');
+    document.body.classList.toggle('lights-off', !lampOn);
+    lamp.setAttribute('aria-pressed', String(lampOn));
+    lamp.setAttribute('aria-label', lampOn ? 'Lamp light: on. Sticker collected. Click to turn it off.' : 'Lamp light: off. Click to turn it on.');
+    var u = unlocked();
+    reward.hidden = !u;
+    dockRecipe.hidden = !u;
+    badge.hidden = !u;
+    hint.hidden = u;
+    hint.textContent = HINT;
+    chip.setAttribute('aria-label', 'Membership card. ' + state.rented.length + ' of ' + PROJECTS.length + ' posters rented, ' + state.stickers.length + ' of ' + STICKERS.length + ' stickers found' + (u ? ', reward unlocked' : '') + '.');
+    if (!u && current === 'recipe') show('home', false);
+  }
+
+  /* actions */
+  function stamp(id) {
+    if (isRented(id)) return;
+    var wasUnlocked = unlocked();
+    state.rented.push(id);
+    save();
+    bump();
+    renderCards(); renderMember();
+    if (!wasUnlocked && unlocked()) toast('Reward unlocked: Grandma’s recipe. Find it in the dock.');
+    else if (state.rented.length === PROJECTS.length) toast('Every poster rented. Find the hidden stickers next.');
+    else toast('Stamped: ' + byId(id).name);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('.plink');
+    if (a) stamp(a.dataset.id);
+  });
+
+  function toggleSticker(id, fromAlbum) {
+    var s = sById(id), i = state.stickers.indexOf(id), wasUnlocked = unlocked();
+    if (i > -1) {
+      state.stickers.splice(i, 1);
+      toast('Put the ' + s.name.toLowerCase() + ' sticker back. ' + state.stickers.length + ' of ' + STICKERS.length + ' found.');
+    } else {
+      state.stickers.push(id);
+      bump();
+      if (!wasUnlocked && unlocked()) toast('Reward unlocked: Grandma’s recipe. Find it in the dock.');
+      else toast('Collected the ' + s.name.toLowerCase() + ' sticker' + s.gloss + '. ' + state.stickers.length + ' of ' + STICKERS.length + ' found.');
+    }
+    save(); renderMember();
+    if (fromAlbum && i > -1) {
+      var spot = document.querySelector('[data-spot][data-sticker="' + id + '"]');
+      if (spot && !spot.closest('[hidden]')) spot.focus({ preventScroll: true });
+      else chip.focus({ preventScroll: true });
+    }
+  }
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.sticker[data-sticker]');
+    if (btn) toggleSticker(btn.dataset.sticker, btn.hasAttribute('data-album'));
+  });
+  $('#reset').addEventListener('click', function () {
+    state = { rented: [], stickers: [] }; save();
+    renderCards(); renderMember();
+    toast('Everything returned. Card cleared.');
+  });
+
+  var lamp = $('#lamp');
+  lamp.addEventListener('click', function () { toggleSticker('lamp', false); });
+
+  renderCards(); renderMember();
+  var start = '';
+  try { start = location.hash.slice(1); } catch (e) {}
+  show(start, false);
+})();
+</script>
+
 </body>
 </html>
