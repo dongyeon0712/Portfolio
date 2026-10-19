@@ -331,8 +331,21 @@ body.on-case::after, body.on-case .dock { display: none; }
   .case__stats, .artifact-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
-.toast { position: fixed; left: 50%; top: calc(16px + env(safe-area-inset-top, 0px)); transform: translate(-50%, -20px); background-color: var(--paper); color: var(--ink); border: 2px solid var(--ink); padding: 10px 16px; border-radius: 3px; max-width: min(92vw, 440px); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 40; box-shadow: 3px 4px 0 rgba(0,0,0,.3); }
+.toast { position: fixed; left: 50%; top: calc(16px + env(safe-area-inset-top, 0px)); transform: translate(-50%, -20px); background-color: var(--paper); color: var(--ink); border: 2px solid var(--ink); padding: 10px 16px; border-radius: 3px; max-width: 94vw; width: max-content; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 40; box-shadow: 3px 4px 0 rgba(0,0,0,.3); display: flex; align-items: center; gap: 10px; text-align: left; white-space: nowrap; }
+.toast span:last-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
+.toast-mark { flex: none; width: 42px; height: 42px; display: block; }
+.toast-mark svg { width: 100%; height: 100%; display: block; }
+.toast.stamped .toast-mark { animation: stampHit .46s cubic-bezier(.32,1.7,.4,1) both; }
+@keyframes stampHit {
+  0% { transform: scale(2.6) rotate(-22deg); opacity: 0; }
+  48% { transform: scale(.8) rotate(-9deg); opacity: 1; }
+  68% { transform: scale(1.12) rotate(-9deg); }
+  100% { transform: scale(1) rotate(-9deg); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast.stamped .toast-mark { animation: none; transform: rotate(-9deg); }
+}
 
 @media (max-width: 960px) {
   .cards { grid-template-columns: minmax(0, 1fr); }
@@ -711,8 +724,22 @@ body.on-case::after, body.on-case .dock { display: none; }
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var HINT = 'Rent every poster and find all 3 hidden stickers to unlock a reward. They are tucked away around the shop, so look on every page. Click a sticker again to put it back.';
 
+  var STAMP_SVG = '<span class="toast-mark" aria-hidden="true"><svg viewBox="0 0 100 100">' +
+    '<circle cx="50" cy="50" r="44" fill="none" stroke="var(--stamp)" stroke-width="5" stroke-dasharray="2.6 2.2" stroke-linecap="round"/>' +
+    '<circle cx="50" cy="50" r="33" fill="none" stroke="var(--stamp)" stroke-width="2.4"/>' +
+    '<text x="50" y="47" text-anchor="middle" font-family="var(--f-label)" font-size="16" font-weight="700" fill="var(--stamp)" letter-spacing="1">RENTED</text>' +
+    '<text x="50" y="68" text-anchor="middle" font-family="var(--f-hand)" font-size="12" fill="var(--stamp)">★</text>' +
+    '</svg></span>';
   function toast(msg) {
+    toastEl.classList.remove('stamped');
     toastEl.textContent = msg;
+    toastEl.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('on'); }, 3400);
+  }
+  function toastStamp(name) {
+    toastEl.classList.add('stamped');
+    toastEl.innerHTML = STAMP_SVG + '<span>Stamped: ' + name + '</span>';
     toastEl.classList.add('on');
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function () { toastEl.classList.remove('on'); }, 3400);
@@ -884,7 +911,7 @@ body.on-case::after, body.on-case .dock { display: none; }
     renderCards(); renderMember();
     if (!wasUnlocked && unlocked()) toast('Reward unlocked: Grandma’s recipe. Find it in the dock.');
     else if (state.rented.length === PROJECTS.length) toast('Every poster rented. Find the hidden stickers next.');
-    else toast('Stamped: ' + byId(id).name);
+    else toastStamp(byId(id).name);
   }
   document.addEventListener('click', function (e) {
     var a = e.target.closest('.plink');
