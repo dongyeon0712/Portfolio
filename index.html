@@ -109,6 +109,9 @@ body.inside .fine { color: var(--chalk); }
 .tile-n.two { flex-direction: column; gap: 2px; }
 .tile-n.two b { font: inherit; font-size: calc(var(--b) * .2); }
 .tile-n.two i { font-style: normal; font-size: calc(var(--b) * .13); }
+.tile-n.fromto { gap: 0; padding: 14%; }
+.tile-n.fromto i { font-size: calc(var(--b) * .17); line-height: 1.05; }
+.tile-n.fromto b { font-size: calc(var(--b) * .17); line-height: 1.05; }
 .tile-l { display: flex; align-items: center; justify-content: center; min-height: 2.4em; font: 400 clamp(1rem, 2.2vh, 1.2rem)/1.2 var(--f-label); letter-spacing: .04em; text-wrap: balance; }
 .tile-c { min-height: 2.7em; font-size: .9rem; line-height: 1.35; color: var(--ink-soft); }
 #view-home { flex: 1 0 auto; grid-template-rows: auto minmax(0, 1fr); }
@@ -545,7 +548,7 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
           <ul class="tiles">
             <li><div class="tile"><span class="burst"><span class="tile-n">+9.9%</span></span><span class="tile-l">Average order value</span><span class="tile-c">Dell Premier homepage</span></div></li>
             <li><div class="tile"><span class="burst"><span class="tile-n">2.8&times;</span></span><span class="tile-l">New account submissions</span><span class="tile-c">Dell Premier landing page</span></div></li>
-            <li><div class="tile"><span class="burst"><span class="tile-n">0%</span></span><span class="tile-l">WCAG failures</span><span class="tile-c">ShelterTech accessibility audit</span></div></li>
+            <li><div class="tile"><span class="burst"><span class="tile-n two fromto"><i>37% &rarr;</i><b>0%</b></span></span><span class="tile-l">WCAG failures</span><span class="tile-c">ShelterTech accessibility audit</span></div></li>
             <li><div class="tile"><span class="burst"><span class="tile-n long">2</span></span><span class="tile-l">Awards at Dell</span><span class="tile-c">President&rsquo;s Award, Game Changer Award</span></div></li>
           </ul>
         </section>
