@@ -650,7 +650,7 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
       <div role="status">
         <dl class="ledger">
           <div><dt>Posters rented</dt><dd id="rent-count">0 / 3</dd></div>
-          <div><dt>Stickers found</dt><dd id="sticker-count">0 / 3</dd></div>
+          <div><dt>Stickers found</dt><dd id="sticker-count">0 / 2</dd></div>
         </dl>
       </div>
       <p class="small">Sticker album</p>
@@ -659,7 +659,7 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
     </div>
     <div class="reward" id="reward" hidden>
       <h3>Reward unlocked</h3>
-      <p>You rented every poster and found all three stickers. Grandma&rsquo;s recipe is yours.</p>
+      <p>You rented every poster and found both stickers. Grandma&rsquo;s recipe is yours.</p>
       <button type="button" class="btn paper" data-go="recipe">See Grandma&rsquo;s recipe</button>
     </div>
     <button type="button" class="reset" id="reset">Return all posters and stickers</button>
@@ -729,10 +729,6 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
   ];
   var STICKERS = [
     {
-      id: 'lamp', name: 'Lamp light', gloss: '',
-      svg: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3v11" stroke="#1d1a17" stroke-width="2"/><path d="M9 29a15 15 0 0 1 30 0z" fill="#c79a2c"/><path d="M14 34l-5 9M24 34v10M34 34l5 9" stroke="#d9b64a" stroke-width="3.5" stroke-linecap="round"/></svg>'
-    },
-    {
       id: 'tteok', name: 'Tteokbokki', gloss: '',
       svg: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 25h38a19 15 0 0 1-38 0z" fill="#6f6a5e"/><ellipse cx="24" cy="25" rx="19" ry="6" fill="#c4402a"/><g fill="#f1dcbc" stroke="#a8452f" stroke-width="1"><rect x="11" y="19" width="14" height="5.5" rx="2.7" transform="rotate(-14 18 21)"/><rect x="24" y="20.5" width="14" height="5.5" rx="2.7" transform="rotate(12 31 23)"/><rect x="16" y="24" width="13" height="5" rx="2.5" transform="rotate(4 22 26)"/></g><path d="M18 14l9 0-3 6z" fill="#d9b27a" stroke="#a8452f" stroke-width="1" stroke-linejoin="round"/><circle cx="33" cy="18" r="1.6" fill="#4d7561"/><circle cx="12" cy="24" r="1.4" fill="#4d7561"/><circle cx="29" cy="29" r="1.4" fill="#4d7561"/><path d="M19 7q-3 3 0 5M26 5q-3 3 0 6M33 7q-3 3 0 5" stroke="#8a8478" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>'
     },
@@ -771,7 +767,7 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
   var toastEl = $('#toast'), toastTimer = null;
   var current = 'home', entered = false, rewardPending = false;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var HINT = 'Rent every finished poster and find all 3 hidden stickers to unlock a reward. They are tucked away around the shop, so look on every page. Click a sticker again to put it back.';
+  var HINT = 'Rent every finished poster and find both hidden stickers to unlock a reward. They are tucked away around the shop, so look on every page. Click a sticker again to put it back.';
 
   var STAMP_SVG = '<span class="toast-mark" aria-hidden="true"><svg viewBox="0 0 100 100">' +
     '<circle cx="50" cy="50" r="44" fill="none" stroke="var(--stamp)" stroke-width="5" stroke-dasharray="2.6 2.2" stroke-linecap="round"/>' +
@@ -936,10 +932,6 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
       btn.setAttribute('aria-pressed', String(on));
       btn.setAttribute('aria-label', 'Hidden sticker: ' + s.name + s.gloss + '. ' + (on ? 'Collected. Click to put it back.' : 'Click to collect it.'));
     });
-    var lampOn = hasSticker('lamp');
-    document.body.classList.toggle('lights-off', !lampOn);
-    lamp.setAttribute('aria-pressed', String(lampOn));
-    lamp.setAttribute('aria-label', lampOn ? 'Lamp light: on. Sticker collected. Click to turn it off.' : 'Lamp light: off. Click to turn it on.');
     var u = unlocked();
     var rv = $('#view-recipe');
     if (u && !rv.firstElementChild) rv.appendChild($('#recipe-tpl').content.cloneNode(true));
@@ -1031,7 +1023,11 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
   });
 
   var lamp = $('#lamp');
-  lamp.addEventListener('click', function () { toggleSticker('lamp', false); });
+  lamp.addEventListener('click', function () {
+    var on = document.body.classList.toggle('lights-off') === false;
+    lamp.setAttribute('aria-pressed', String(on));
+    lamp.setAttribute('aria-label', on ? 'Lamp light: on. Click to turn off.' : 'Lamp light: off. Click to turn on.');
+  });
 
   renderCards(); renderMember();
   var start = '';
