@@ -725,7 +725,7 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
     {
       id: 'landing', abbr: 'Part II', rot: '7deg', mock: 'mk-landing',
       name: 'Dell Premier Landing Page Redesign', title: 'Premier Landing Page Redesign',
-      org: 'Dell Technologies', pill: 'Part II',
+      org: 'Dell Technologies', pill: '',
       stat: '2.8×', statSm: false, statLabel: 'New account submissions',
       chips: ['+19% sign-ins'],
       role: 'Project lead & product design',
@@ -736,7 +736,7 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
     {
       id: 'shelter', abbr: 'Audit', rot: '-5deg', mock: 'mk-shelter',
       name: 'Accessibility Audit for ShelterTech.org', title: 'Accessibility Audit for ShelterTech.org',
-      org: 'ShelterTech', pill: 'Accessibility',
+      org: 'ShelterTech', pill: '',
       stat: '37% → 0%', statSm: true, statLabel: 'WCAG failures',
       chips: ['Accessibility audit'],
       role: 'Accessibility design lead',
@@ -747,7 +747,7 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
     {
       id: 'privy', abbr: 'Privy', rot: '10deg', mock: 'mk-privy',
       name: 'Privy', title: 'Privy',
-      org: 'Concept', pill: 'In progress',
+      org: 'Concept', pill: '',
       stat: 'In progress', statSm: true, statLabel: 'Making privacy policies readable at the moment of consent',
       chips: [],
       role: 'Research and product design',
@@ -899,7 +899,7 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
         '<span class="seen">Rented</span>' +
       '</div>' +
       '<div class="pbody">' +
-        '<div class="prow"><span class="org"><i></i>' + p.org + '</span><span class="pill">' + p.pill + '</span></div>' +
+        '<div class="prow"><span class="org"><i></i>' + p.org + '</span>' + (p.pill ? '<span class="pill">' + p.pill + '</span>' : '') + '</div>' +
         (p.soon ? '<h3 class="ptitle">' + p.title + '</h3>' : '<h3 class="ptitle"><a class="plink" href="#case-' + p.id + '" data-id="' + p.id + '">' + p.title + '<span class="vh"> (opens the case study)</span></a></h3>') +
         '<dl class="did"><div><dt>What I did</dt><dd>' + p.role + '</dd></div><div><dt>' + (p.plabel || 'Problem') + '</dt><dd class="prob">' + p.problem + '</dd></div></dl>' +
         (p.soon ? '<form class="remind" novalidate><label class="rl" for="em-' + p.id + '">Remind me when it\u2019s ready</label><div class="rrow"><input id="em-' + p.id + '" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required><button class="btn" type="submit">Remind me</button></div><p class="rnote" role="status" tabindex="-1">Just your email, only to tell you when the case study is live.</p></form>' : '<span class="go" aria-hidden="true">Read the full story \u2192</span>') +
