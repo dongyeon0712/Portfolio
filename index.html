@@ -138,7 +138,11 @@ body:not(.inside):not(.on-case) { margin-bottom: 0; }
 .mark { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; background-color: var(--board); background-image: var(--grain); border: 4px solid var(--wood); border-radius: 3px; padding: 5px 12px 6px; cursor: pointer; color: var(--ink); box-shadow: 0 3px 0 rgba(0,0,0,.3); min-height: 44px; }
 .mark-a { font: 400 1.25rem/1 var(--f-display); color: var(--red); letter-spacing: .06em; text-transform: uppercase; }
 .mark-b { font: 400 .8rem/1 var(--f-label); letter-spacing: .2em; text-transform: uppercase; }
-.toplink { display: inline-flex; align-items: center; min-height: 44px; padding: 0 2px; font: 400 1rem/1 var(--f-label); letter-spacing: .14em; text-transform: uppercase; color: var(--chalk); text-decoration: none; border-bottom: 3px solid var(--chalk-y); }
+.toplink { display: inline-flex; align-items: center; min-height: 44px; padding: 0 2px; font: 400 1rem/1 var(--f-label); letter-spacing: .14em; text-transform: uppercase; color: var(--chalk); text-decoration: none; }
+.toplinks { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 0 22px; }
+.toplink { gap: 7px; }
+.toplink .ext { flex: none; }
+.toplink:hover { color: var(--chalk-y); }
 .lamp { position: absolute; top: 0; left: 50%; margin-left: -42px; width: 84px; height: 70px; padding: 0; border: 0; background: none; cursor: pointer; z-index: 2; }
 .lamp::before { content: ""; position: absolute; left: 41px; top: 0; width: 2px; height: 38px; background: #1d1a17; }
 .lamp::after { content: ""; position: absolute; left: 0; top: 38px; width: 84px; height: 32px; background: #c79a2c; border-radius: 84px 84px 5px 5px; box-shadow: inset 0 -6px 0 rgba(0,0,0,.2); }
@@ -199,6 +203,7 @@ body.inside.lights-off::before { content: ""; position: fixed; inset: 0; backgro
 .remind.done .rrow, .remind.done .rl { display: none; }
 .remind.done .rnote { margin: 0; font-size: 1rem; font-weight: 700; color: var(--ink); }
 .did dd.prob { font-weight: 400; color: var(--ink-soft); }
+.did dd.prob strong { font-weight: 700; color: var(--ink); }
 .go { display: inline-block; margin-top: 14px; font: 400 1.1rem/1 var(--f-label); letter-spacing: .08em; text-transform: uppercase; border-bottom: 3px solid var(--red); padding-bottom: 3px; }
 
 /* testimonials */
@@ -594,7 +599,11 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
     <h1 class="vh">Daniel Seo, Comic Room</h1>
     <header class="topbar">
       <button type="button" class="mark" data-go="home"><span class="vh">Daniel Seo Comic Room. Step outside to the home page.</span><span class="mark-a" aria-hidden="true">Comic Room</span><span class="mark-b" aria-hidden="true">Daniel Seo</span></button>
-      <a class="toplink" href="https://www.linkedin.com/in/dongyeonseo" target="_blank" rel="noopener">LinkedIn<span class="vh"> (opens in a new tab)</span></a>
+      <nav class="toplinks" aria-label="Contact">
+        <a class="toplink" href="https://www.linkedin.com/in/dongyeonseo" target="_blank" rel="noopener">LinkedIn<svg class="ext" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (opens in a new tab)</span></a>
+        <a class="toplink" href="Dongyeon%20Seo%20(Daniel)%20Resume.pdf" target="_blank" rel="noopener">Resume<svg class="ext" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (PDF, opens in a new tab)</span></a>
+        <a class="toplink" href="mailto:dseo1212@uw.edu">Email</a>
+      </nav>
     </header>
     <div class="glow" aria-hidden="true"></div>
     <button type="button" class="lamp" id="lamp" aria-pressed="true" aria-label="Lamp light"></button>
@@ -751,9 +760,9 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
       org: 'Dell Technologies', pill: 'President’s Award',
       stat: '+9.9%', statSm: false, statLabel: 'Average order value',
       chips: ['+7.1% revenue per visit'],
-      role: 'Research co-lead & product design',
+      role: 'Research · Strategy · UI design',
       result: '+9.9% average order value and +7.1% revenue per visit',
-      problem: 'Customers couldn\u2019t navigate Premier. They struggled to find what they needed, so they contacted sales reps or left Premier entirely.',
+      problem: 'Customers <strong>couldn\u2019t navigate Premier</strong>. They struggled to find what they needed, so they <strong>contacted sales reps or left Premier entirely</strong>.',
       url: 'https://www.dongyeonseo.com/work/dell-premier-homepage.html'
     },
     {
@@ -762,9 +771,9 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
       org: 'Dell Technologies', pill: '',
       stat: '2.8×', statSm: false, statLabel: 'New account submissions',
       chips: ['+19% sign-ins'],
-      role: 'Project lead & product design',
+      role: 'Project lead · Research · UI design',
       result: '2.8× new account submissions and +19% sign-ins',
-      problem: 'A landing page without a clear value story. Dell Premier lacked a clear brand identity and a consistent value proposition, which made it hard to attract new customers and build loyalty.',
+      problem: 'A landing page <strong>without a clear value story</strong>. Dell Premier lacked a clear brand identity and a consistent value proposition, which made it <strong>hard to attract new customers</strong> and build loyalty.',
       url: 'https://www.dongyeonseo.com/work/premier-landing-page.html'
     },
     {
@@ -773,9 +782,9 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
       org: 'ShelterTech', pill: '',
       stat: '37% → 0%', statSm: true, statLabel: 'WCAG failures',
       chips: ['Accessibility audit'],
-      role: 'Accessibility design lead',
+      role: 'Accessibility audit · Training',
       result: 'WCAG failures down from 37% to 0%',
-      problem: 'Accessibility gaps. An audit against WCAG 2.1 A and AA found failure rates of 37% on ShelterTech.org and 24% on SFServiceGuide.org.',
+      problem: '<strong>Accessibility gaps</strong>. An audit against WCAG 2.1 A and AA found failure rates of <strong>37%</strong> on ShelterTech.org and <strong>24%</strong> on SFServiceGuide.org.',
       url: 'https://www.dongyeonseo.com/work/shelter-tech-accessibility.html'
     },
     {
@@ -784,9 +793,9 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
       org: 'Concept', pill: '',
       stat: 'In progress', statSm: true, statLabel: 'Making privacy policies readable at the moment of consent',
       chips: [],
-      role: 'Research and product design',
+      role: 'Research · A/B testing · Prototyping',
       result: 'Still being made. New chapters land here.',
-      problem: 'People skip privacy policies because they take too long to read, so they agree without knowing what they agreed to.',
+      problem: 'People <strong>skip privacy policies</strong> because they take too long to read, so they <strong>agree without knowing</strong> what they agreed to.',
       url: 'https://www.dongyeonseo.com/work/privy.html'
     }
   ];
@@ -889,7 +898,7 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
     if (userAction) {
       var h = $('#view-' + view + ' [data-focus]');
       if (h) h.focus({ preventScroll: true });
-      if (inside && !wasInside && !entered) { entered = true; toast('Ding-a-ling! Welcome in. Collect the 2 hidden stickers.'); }
+      if (inside && !wasInside && !entered) { entered = true; toast('Ding-a-ling! Welcome in.'); }
     }
     if (!isCase && rewardPending) { rewardPending = false; toast('Reward unlocked: Grandma’s recipe. Find it in the dock.'); }
   }
