@@ -361,6 +361,31 @@ body.on-case::after, body.on-case .dock { display: none; }
   .case__stats, .artifact-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* case studies: left rail (logo, back, sections) and an "Up next" row */
+.case-side { display: none; }
+.case section[id], .case header[id] { scroll-margin-top: 32px; }
+.side-back { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; min-height: 44px; padding: 0 20px 0 16px; border: 2px solid var(--ink-soft); border-radius: 99px; font: 400 1.05rem/1 var(--f-label); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; }
+.side-back:hover { background: rgba(42,39,35,.08); color: var(--ink); }
+.side-nav { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.side-nav button { display: block; width: 100%; min-height: 40px; padding: 6px 0 6px 14px; text-align: left; background: none; border: 0; border-left: 3px solid transparent; font: 400 .98rem/1.25 var(--f-label); letter-spacing: .12em; text-transform: uppercase; color: #6b6558; cursor: pointer; }
+.side-nav button:hover { color: var(--ink); }
+.side-nav button[aria-current="true"] { color: var(--blue); border-left-color: var(--red); background: rgba(59,95,132,.08); }
+@media (min-width: 1180px) {
+  body.on-case #scene-case:not([hidden]) { display: grid; grid-template-columns: 200px minmax(0, 880px); gap: 56px; justify-content: center; max-width: 1200px; margin-inline: auto; }
+  .case-side { display: flex; flex-direction: column; gap: 26px; position: sticky; top: 28px; align-self: start; padding-top: 44px; max-height: calc(100vh - 40px); overflow-y: auto; }
+  .case-side .mark { align-self: flex-start; }
+  .case__back { display: none; }
+}
+.case__next { display: flex; flex-direction: column; gap: 16px; padding-top: 8px; border-top: 2px solid rgba(42,39,35,.25); }
+.case__next h2 { margin: 18px 0 0; font: 400 1.15rem/1 var(--f-label); letter-spacing: .22em; text-transform: uppercase; color: #6b6558; }
+.next-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.next-card { position: relative; display: block; height: 100%; padding: 10px 10px 18px; background-color: var(--paper); background-image: var(--grain); color: var(--ink); box-shadow: 3px 5px 0 rgba(0,0,0,.25); text-decoration: none; transition: transform .15s ease; }
+.next-card:hover { transform: translateY(-3px); }
+.next-card .ptitle { margin-top: 10px; font-size: clamp(1.25rem, 2.4vw, 1.6rem); }
+.next-card .pbody { padding-top: 14px; }
+.next-card .ptitle .vh { font-size: 1px; }
+@media (max-width: 720px) { .next-cards { grid-template-columns: minmax(0, 1fr); } }
+
 .toast { position: fixed; left: 50%; top: calc(16px + env(safe-area-inset-top, 0px)); transform: translate(-50%, -20px); background-color: var(--paper); color: var(--ink); border: 2px solid var(--ink); padding: 10px 16px; border-radius: 3px; max-width: 94vw; width: max-content; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 40; box-shadow: 3px 4px 0 rgba(0,0,0,.3); display: flex; align-items: center; gap: 10px; text-align: left; white-space: nowrap; }
 .toast span:last-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
@@ -847,6 +872,7 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
     var isCase = view.indexOf('case-') === 0, inside = view !== 'home' && !isCase, wasInside = document.body.classList.contains('inside');
     current = view;
     document.title = TITLES[view] || TITLES.home;
+    if (isCase && typeof buildSide === 'function') buildSide(view);
     VIEWS.forEach(function (v) { $('#view-' + v).hidden = (v !== view); });
     sceneOut.hidden = view !== 'home';
     sceneIn.hidden = !inside;
@@ -859,6 +885,7 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
     });
     closeCard(false);
     window.scrollTo(0, 0);
+    if (isCase) spy();
     if (userAction) {
       var h = $('#view-' + view + ' [data-focus]');
       if (h) h.focus({ preventScroll: true });
@@ -899,16 +926,20 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
   });
 
   /* build */
+  function coverHTML(p) {
+    var chips = p.chips.map(function (c) { return '<span>' + c + '</span>'; }).join('');
+    return '<div class="cover" aria-hidden="true">' +
+      '<div class="c-text"><span class="c-stat' + (p.statSm ? ' sm' : '') + '">' + p.stat + '</span><span class="c-label">' + p.statLabel + '</span></div>' +
+      '<div class="mock ' + p.mock + '"></div>' +
+      (chips ? '<div class="c-chips">' + chips + '</div>' : '') +
+      '<span class="seen">Rented</span>' +
+    '</div>';
+  }
   PROJECTS.forEach(function (p) {
     var li = document.createElement('li');
     var chips = p.chips.map(function (c) { return '<span>' + c + '</span>'; }).join('');
     li.innerHTML = '<article class="pcard p-' + p.id + '" data-id="' + p.id + '">' +
-      '<div class="cover" aria-hidden="true">' +
-        '<div class="c-text"><span class="c-stat' + (p.statSm ? ' sm' : '') + '">' + p.stat + '</span><span class="c-label">' + p.statLabel + '</span></div>' +
-        '<div class="mock ' + p.mock + '"></div>' +
-        (chips ? '<div class="c-chips">' + chips + '</div>' : '') +
-        '<span class="seen">Rented</span>' +
-      '</div>' +
+      coverHTML(p) +
       '<div class="pbody">' +
         '<div class="prow"><span class="org"><i></i>' + p.org + '</span>' + (p.pill ? '<span class="pill">' + p.pill + '</span>' : '') + '</div>' +
         (p.soon ? '<h3 class="ptitle">' + p.title + '</h3>' : '<h3 class="ptitle"><a class="plink" href="#case-' + p.id + '" data-id="' + p.id + '">' + p.title + '<span class="vh"> (opens the case study)</span></a></h3>') +
@@ -926,6 +957,76 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
   });
   PROJECTS.forEach(function () { mdots.appendChild(document.createElement('i')); });
   $$('[data-spot]').forEach(function (btn) { btn.innerHTML = sById(btn.dataset.sticker).svg; });
+
+  /* case study pages: left rail with the logo, a back button and the page's sections, plus "Up next" */
+  var caseSide = document.createElement('aside');
+  caseSide.className = 'case-side';
+  caseSide.innerHTML = '<button type="button" class="mark" data-go="home"><span class="vh">Daniel Seo Comic Room. Go to the home page.</span><span class="mark-a" aria-hidden="true">Comic Room</span><span class="mark-b" aria-hidden="true">Daniel Seo</span></button>' +
+    '<a class="side-back" href="#projects" aria-label="Back to projects"><span aria-hidden="true">\u2039</span> Back</a>' +
+    '<nav aria-label="On this page"><ul class="side-nav" id="side-nav"></ul></nav>';
+  sceneCase.insertBefore(caseSide, sceneCase.firstChild);
+  var sideNav = $('#side-nav'), sideItems = [];
+  function buildSide(view) {
+    var root = $('#view-' + view);
+    sideNav.innerHTML = '';
+    sideItems = [];
+    if (!root) return;
+    var hero = root.querySelector('.case__hero');
+    var targets = [{ label: 'Overview', el: hero }];
+    Array.prototype.forEach.call(root.querySelectorAll('.case__section'), function (sec) {
+      var lab = sec.querySelector('.label');
+      if (lab) targets.push({ label: lab.textContent.replace(/^\s*\d+\s*\u2014\s*/, ''), el: sec });
+    });
+    targets.forEach(function (t, i) {
+      if (!t.el.id) t.el.id = view + '-s' + i;
+      var li = document.createElement('li'), b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = t.label;
+      b.dataset.target = t.el.id;
+      li.appendChild(b);
+      sideNav.appendChild(li);
+      sideItems.push({ el: t.el, btn: b });
+    });
+    spy();
+  }
+  function spy() {
+    if (!sideItems.length || current.indexOf('case-') !== 0) return;
+    var active = 0;
+    sideItems.forEach(function (it, i) { if (it.el.getBoundingClientRect().top <= 160) active = i; });
+    if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4) active = sideItems.length - 1;
+    sideItems.forEach(function (it, i) { if (i === active) it.btn.setAttribute('aria-current', 'true'); else it.btn.removeAttribute('aria-current'); });
+  }
+  var spyTick = false;
+  window.addEventListener('scroll', function () {
+    if (spyTick) return;
+    spyTick = true;
+    requestAnimationFrame(function () { spyTick = false; spy(); });
+  }, { passive: true });
+  window.addEventListener('load', spy);
+  window.addEventListener('resize', spy);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(spy);
+  sideNav.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-target]');
+    if (!b) return;
+    var el = document.getElementById(b.dataset.target);
+    el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    var h = el.querySelector('h1, h2');
+    if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
+  });
+  $$('.case').forEach(function (c) {
+    var id = c.id.replace('view-case-', ''), at = ids.indexOf(id);
+    if (at < 0) return;
+    var more = [1, 2].map(function (n) { return PROJECTS[(at + n) % PROJECTS.length]; });
+    var sec = document.createElement('section');
+    sec.className = 'case__next';
+    sec.setAttribute('aria-labelledby', 'next-h-' + id);
+    sec.innerHTML = '<h2 id="next-h-' + id + '">Up next</h2><ul class="next-cards">' + more.map(function (p) {
+      return '<li><a class="next-card plink p-' + p.id + '" href="#case-' + p.id + '" data-id="' + p.id + '">' + coverHTML(p) +
+        '<div class="pbody"><div class="prow"><span class="org"><i></i>' + p.org + '</span></div>' +
+        '<h3 class="ptitle">' + p.title + '<span class="vh"> (opens the case study)</span></h3></div></a></li>';
+    }).join('') + '</ul>';
+    c.insertBefore(sec, c.querySelector('.case__footer'));
+  });
 
   /* render */
   function renderCards() {
