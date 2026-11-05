@@ -99,8 +99,7 @@ body.inside .fine { color: var(--chalk); }
 .notice-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
 .cta-col { display: grid; gap: 10px; min-width: 190px; }
 .tiles { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-#view-home { gap: 16px; }
-#view-home .painted h2 { font-size: 1.35rem; }
+#view-projects { gap: 16px; }
 .tiles li { container-type: inline-size; }
 .tile { height: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-align: center; background-color: var(--hanji-paper); background-image: var(--hanji); border: 2px solid var(--ink); padding: clamp(6px, 1.8vh, 18px) 12px; box-shadow: 3px 4px 0 rgba(0,0,0,.22); }
 .burst { --b: clamp(64px, min(13vw, 17vh), 150px); width: var(--b); height: var(--b); margin-bottom: clamp(2px, 1vh, 10px); flex: none; filter: drop-shadow(3px 4px 0 rgba(0,0,0,.28)); transform: rotate(-6deg); }
@@ -115,20 +114,17 @@ body.inside .fine { color: var(--chalk); }
 .tile-n.fromto b { font-size: calc(var(--b) * .17); line-height: 1.05; }
 .tile-l { display: flex; align-items: center; justify-content: center; min-height: 2.4em; font: 400 clamp(1rem, 2.2vh, 1.2rem)/1.2 var(--f-label); letter-spacing: .04em; text-wrap: balance; }
 .tile-c { min-height: 2.7em; font-size: .9rem; line-height: 1.35; color: var(--ink-soft); }
-#view-home { flex: 1 0 auto; grid-template-rows: auto minmax(0, 1fr); }
 body:not(.inside):not(.on-case) { margin-bottom: 0; }
 #scene-out .step { display: none; }
 #scene-out.facade { min-height: calc(100dvh - 122px); }
 #scene-out .wall { flex: 1 0 auto; min-height: 0; padding-block: clamp(14px, 3vh, 26px); }
-#view-home .notice { padding-block: clamp(10px, 2vh, 18px); }
-#view-home .notice h2 { font-size: clamp(1.2rem, min(2.8vw, 4.2vh), 1.9rem); line-height: 1.12; }
-#view-home .lede { font-size: clamp(.85rem, 1.9vh, .98rem); }
-#view-home .eyebrow { font-size: clamp(.95rem, 2.4vh, 1.4rem); margin-bottom: 10px; }
-#view-home .burst { --b: clamp(56px, min(12vw, 11.5vh), 120px); }
-#view-home .tile-l { font-size: clamp(1rem, 2.2vh, 1.2rem); }
-#view-home .tile-c { font-size: clamp(.85rem, 1.9vh, .95rem); min-height: 0; }
-#view-home > section[aria-labelledby="stats-h"] { display: flex; flex-direction: column; min-height: 0; }
-#view-home .tiles { flex: 1 0 auto; grid-auto-rows: 1fr; }
+#view-projects .notice { padding-block: clamp(10px, 2vh, 18px); }
+#view-projects .notice h2 { font-size: clamp(1.2rem, min(2.8vw, 4.2vh), 1.9rem); line-height: 1.12; }
+#view-projects .lede { font-size: clamp(.85rem, 1.9vh, .98rem); }
+#view-projects .eyebrow { font-size: clamp(.95rem, 2.4vh, 1.4rem); margin-bottom: 10px; }
+#view-projects .burst { --b: clamp(56px, min(12vw, 11.5vh), 120px); }
+#view-projects .tile-l { font-size: clamp(1rem, 2.2vh, 1.2rem); }
+#view-projects .tile-c { font-size: clamp(.85rem, 1.9vh, .95rem); min-height: 0; }
 
 
 /* inside: the room */
@@ -445,43 +441,42 @@ body.on-case .toplink:hover { color: var(--red); }
 }
 /* home: always fit above the fold */
 @media (min-width: 701px) and (max-height: 800px) {
-  #view-home { gap: 10px; }
-  #view-home .lede { font-size: .88rem; line-height: 1.35; margin-top: 4px; }
-  #view-home .notice { gap: 8px 28px; }
-  #view-home .tile-l, #view-home .tile-c { min-height: 0; }
-  #view-home .tile { gap: 2px; padding-block: 6px; }
-  #view-home .burst { --b: clamp(60px, 15vh, 110px); }
+  #view-projects { gap: 10px; }
+  #view-projects .lede { font-size: .88rem; line-height: 1.35; margin-top: 4px; }
+  #view-projects .notice { gap: 8px 28px; }
+  #view-projects .tile-l, #view-projects .tile-c { min-height: 0; }
+  #view-projects .tile { gap: 2px; padding-block: 6px; }
+  #view-projects .burst { --b: clamp(60px, 15vh, 110px); }
 }
 @media (min-width: 701px) and (max-height: 640px) {
-  #view-home .lede { display: none; }
 }
 @media (max-width: 700px) {
   .wall { padding-block: 14px; min-height: 0; }
-  #view-home { gap: 10px; }
-  #view-home .notice { padding-block: 12px; gap: 10px; }
-  #view-home .lede { font-size: .85rem; line-height: 1.35; margin-top: 0; }
-  #view-home .eyebrow { font-size: .95rem; letter-spacing: .06em; margin-bottom: 6px; }
-  #view-home .cta-col { grid-auto-flow: column; grid-auto-columns: 1fr; gap: 8px; }
-  #view-home .btn { min-height: 42px; padding: 8px 10px; }
-  #view-home .tiles { gap: 8px; }
-  #view-home .burst { --b: 86px; margin-bottom: 0; }
-  #view-home .tile { padding: 10px 8px; gap: 2px; }
-  #view-home .tile-l { min-height: 0; font-size: .95rem; }
-  #view-home .tile-c { display: none; }
+  #view-projects { gap: 10px; }
+  #view-projects .notice { padding-block: 12px; gap: 10px; }
+  #view-projects .lede { font-size: .85rem; line-height: 1.35; margin-top: 0; }
+  #view-projects .eyebrow { font-size: .95rem; letter-spacing: .06em; margin-bottom: 6px; }
+  #view-projects .cta-col { grid-auto-flow: column; grid-auto-columns: 1fr; gap: 8px; }
+  #view-projects .btn { min-height: 42px; padding: 8px 10px; }
+  #view-projects .tiles { gap: 8px; }
+  #view-projects .burst { --b: 86px; margin-bottom: 0; }
+  #view-projects .tile { padding: 10px 8px; gap: 2px; }
+  #view-projects .tile-l { min-height: 0; font-size: .95rem; }
+  #view-projects .tile-c { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 @media (max-width: 700px) and (max-height: 720px) {
   .wall { padding-block: 10px; }
-  #view-home { gap: 6px; }
-  #view-home .notice h2 { font-size: 1.25rem; }
-  #view-home .notice { padding-block: 8px; gap: 8px; }
-  #view-home .btn { min-height: 36px; }
-  #view-home .burst { --b: 54px; }
-  #view-home .tiles { gap: 6px; }
-  #view-home .tile { padding: 6px 6px; }
-  #view-home .tile-l { font-size: .8rem; line-height: 1.1; }
+  #view-projects { gap: 6px; }
+  #view-projects .notice h2 { font-size: 1.25rem; }
+  #view-projects .notice { padding-block: 8px; gap: 8px; }
+  #view-projects .btn { min-height: 36px; }
+  #view-projects .burst { --b: 54px; }
+  #view-projects .tiles { gap: 6px; }
+  #view-projects .tile { padding: 6px 6px; }
+  #view-projects .tile-l { font-size: .8rem; line-height: 1.1; }
 }
 
 /* about: the cosy corner of the comic room (fits above the fold) */
@@ -552,7 +547,9 @@ body:not(.inside):not(.on-case)::after { background-image: var(--grain), repeati
 /* accessibility fixes: contrast, focus not hidden behind the fixed dock, wrapping toast */
 html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
 .eyebrow { color: #962f23; }
-#view-home .painted h2 { color: #962f23; }
+#view-projects .notice .lede { color: var(--ink); }
+#view-projects .notice, #view-projects .tile { color: var(--ink); }
+#view-projects .painted h2 { color: var(--chalk-y); }
 .slot { color: rgba(42,39,35,.8); }
 .dk:hover, .dk[aria-current="page"], .dk[aria-expanded="true"] { color: #fff; }
 .toast { white-space: normal; width: auto; max-width: min(94vw, 480px); }
@@ -571,81 +568,90 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
   .toplinks { gap: 0 8px; }
   .toplink { font-size: .86rem; letter-spacing: .1em; }
 }
+
+/* ---- single top nav + floating card ---- */
+.topbar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+.topbar .mark { justify-self: start; }
+.topbar .toplinks { grid-column: 2; justify-content: center; gap: 0 26px; }
+.toplink { background: none; border: 0; cursor: pointer; }
+.tab[aria-current="page"] { color: var(--chalk-y); box-shadow: inset 0 -3px 0 var(--chalk-y); }
+.tab:hover { color: var(--chalk-y); }
+body.on-case .tab[aria-current="page"] { color: var(--red); box-shadow: inset 0 -3px 0 var(--red); }
+.dock { left: auto; right: 22px; transform: none; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); }
+.cardpop { left: auto; right: 22px; transform: none; bottom: calc(126px + env(safe-area-inset-bottom, 0px)); }
+#view-projects .painted { justify-content: center; text-align: center; padding-top: 18px; }
+#view-projects .painted h2 { font-family: var(--f-display); font-size: clamp(1.4rem, 2.8vw, 2.3rem); line-height: 1.12; letter-spacing: .01em; max-width: 34em; margin-inline: auto; text-wrap: balance; }
+#view-projects .painted .hint { margin: 16px auto 0; max-width: 56ch; font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.5; text-wrap: balance; }
+@media (max-width: 700px) {
+  .topbar { grid-template-columns: 1fr; justify-items: center; }
+  .topbar .mark { justify-self: center; }
+  .topbar .toplinks { grid-column: 1; flex: none; width: 100%; justify-content: center; gap: 0 16px; margin-top: 4px; }
+  .dock { right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+  .cardpop { right: 12px; bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
+}
+.lamp { left: auto; right: 28px; margin-left: 0; }
+@media (max-width: 1000px) { .lamp { display: none; } body.inside.lights-off::before { display: none; } }
+body.inside::after { display: none; }
+.topbar { grid-template-columns: 1fr auto; }
+.topbar .toplinks { grid-column: 2; justify-content: flex-end; }
+.lamp { right: auto; left: 50%; margin-left: -42px; }
+@media (max-width: 800px) { .lamp { display: none; } body.inside.lights-off::before { display: none; } }
+@media (max-width: 700px) { .topbar { grid-template-columns: 1fr; } .topbar .toplinks { grid-column: 1; justify-content: center; } }
+
+.btn.tertiary { background: transparent; color: var(--ink); border-color: transparent; padding-inline: 8px; }
+.btn.tertiary:hover { background: transparent; border-color: transparent; color: var(--red); text-decoration: underline; text-underline-offset: 5px; }
+
+/* card button: clearly a collectible */
+.dock { padding: 6px 8px; }
+#card-chip { flex-direction: row; gap: 10px; min-width: 0; padding: 6px 12px 6px 8px; text-align: left; }
+#card-chip .chip-t { display: grid; gap: 4px; }
+#card-chip .chip-t b { font: 400 1.05rem/1 var(--f-label); letter-spacing: .08em; text-transform: uppercase; color: var(--chalk-y); }
+#card-chip .chip-t small { font: 400 .85rem/1 var(--f-body); color: var(--chalk); }
+#card-chip .badge { top: -6px; right: -6px; }
+@media (max-width: 440px) { #card-chip .chip-t small { display: none; } #card-chip { padding: 6px 10px 6px 6px; } }
+.yrs { font-weight: 700; white-space: nowrap; }
+#view-projects .painted { justify-content: flex-start; text-align: left; }
+#view-projects .painted h2 { margin-inline: 0; }
+#view-projects .painted .hint { margin-inline: 0; max-width: none; }
+
+/* avatar + typed intro */
+.intro { justify-content: flex-start; align-items: center; gap: 22px; }
+.intro { flex-direction: column; justify-content: center; text-align: center; gap: 14px; }
+#view-projects .intro { justify-content: center; text-align: center; }
+#view-projects .intro h2, #view-projects .intro .hint { margin-inline: auto; }
+#view-projects .intro .hint { max-width: 60ch; }
+#view-projects { gap: clamp(36px, 6vw, 64px); }
+#view-projects .intro { padding-top: clamp(16px, 3vw, 36px); }
+#view-projects .intro .hint { margin-top: 20px; }
 </style>
 
 </head>
 <body>
 <main>
-  <div id="scene-out" class="facade">
-    <div class="street" aria-hidden="true">
-      <i class="st-moon"></i>
-      
-      
-      <svg class='st-row l' viewBox='0 0 340 420' preserveAspectRatio='xMaxYMax meet' aria-hidden='true'><g class='ink'><rect x='6' y='110' width='150' height='310' fill='#d6c9ae'/><rect x='-2' y='98' width='166' height='16' fill='#b9ac92'/><rect x='26' y='142' width='44' height='52' fill='#efe9d6'/><path d='M48 142 v52 M26 168 h44' fill='none' stroke-width='1.6'/><rect x='92' y='142' width='44' height='52' fill='#efe9d6'/><path d='M114 142 v52 M92 168 h44' fill='none' stroke-width='1.6'/><rect x='26' y='224' width='44' height='52' fill='#efe9d6'/><path d='M48 224 v52 M26 250 h44' fill='none' stroke-width='1.6'/><rect x='92' y='224' width='44' height='52' fill='#efe9d6'/><path d='M114 224 v52 M92 250 h44' fill='none' stroke-width='1.6'/><rect x='26' y='306' width='44' height='52' fill='#efe9d6'/><path d='M48 306 v52 M26 332 h44' fill='none' stroke-width='1.6'/><rect x='92' y='306' width='44' height='52' fill='#efe9d6'/><path d='M114 306 v52 M92 332 h44' fill='none' stroke-width='1.6'/><path d='M130 178 L235 124 L340 178 Z' fill='#b8553f'/><path d='M150 168 L235 130 L320 168' fill='none' stroke-width='1.4' opacity='.5'/><rect x='138' y='178' width='198' height='242' fill='#efe2c0'/><rect x='160' y='194' width='154' height='36' fill='#3f6b57'/><text x='237' y='221' text-anchor='middle' font-size='24' fill='#f4ead0' stroke='none' style='font-family:var(--f-display)'>문방구</text><rect x='152.0' y='240' width='24.6' height='18' fill='#c4483b'/><rect x='176.6' y='240' width='24.6' height='18' fill='#f3ead2'/><rect x='201.1' y='240' width='24.6' height='18' fill='#c4483b'/><rect x='225.7' y='240' width='24.6' height='18' fill='#f3ead2'/><rect x='250.3' y='240' width='24.6' height='18' fill='#c4483b'/><rect x='274.9' y='240' width='24.6' height='18' fill='#f3ead2'/><rect x='299.4' y='240' width='24.6' height='18' fill='#c4483b'/><circle cx='164.3' cy='258' r='12.3' fill='#c4483b'/><circle cx='188.9' cy='258' r='12.3' fill='#f3ead2'/><circle cx='213.4' cy='258' r='12.3' fill='#c4483b'/><circle cx='238.0' cy='258' r='12.3' fill='#f3ead2'/><circle cx='262.6' cy='258' r='12.3' fill='#c4483b'/><circle cx='287.1' cy='258' r='12.3' fill='#f3ead2'/><circle cx='311.7' cy='258' r='12.3' fill='#c4483b'/><rect x='156' y='284' width='96' height='96' fill='#bcd8e2'/><path d='M204 284 v96 M156 332 h96' fill='none' stroke-width='1.6'/><rect x='164' y='348' width='14' height='28' fill='#d9604f' stroke-width='1.4'/><rect x='182' y='356' width='12' height='20' fill='#e3b94a' stroke-width='1.4'/><rect x='212' y='348' width='14' height='28' fill='#5b86c2' stroke-width='1.4'/><rect x='230' y='354' width='12' height='22' fill='#7fb36a' stroke-width='1.4'/><rect x='268' y='298' width='52' height='122' fill='#8b5a34'/><rect x='276' y='308' width='36' height='60' fill='#bcd8e2' stroke-width='1.6'/><circle cx='278' cy='380' r='3' fill='#e3b94a' stroke-width='1.2'/><path d='M146 420 L150 394 L178 394 L182 420 Z' fill='#b4643f'/><circle cx='158' cy='382' r='10' fill='#5f9a52'/><circle cx='171' cy='376' r='11' fill='#6aaa5c'/><circle cx='164' cy='366' r='9' fill='#4f8a48'/></g></svg>
-      <svg class='st-row r' viewBox='0 0 340 420' preserveAspectRatio='xMinYMax meet' aria-hidden='true'><g class='ink'><rect x='186' y='96' width='154' height='324' fill='#cfd6d4'/><rect x='180' y='84' width='168' height='16' fill='#aab3b1'/><rect x='206' y='126' width='44' height='52' fill='#eef0ea'/><path d='M228 126 v52 M206 152 h44' fill='none' stroke-width='1.6'/><rect x='274' y='126' width='44' height='52' fill='#eef0ea'/><path d='M296 126 v52 M274 152 h44' fill='none' stroke-width='1.6'/><rect x='206' y='208' width='44' height='52' fill='#eef0ea'/><path d='M228 208 v52 M206 234 h44' fill='none' stroke-width='1.6'/><rect x='274' y='208' width='44' height='52' fill='#eef0ea'/><path d='M296 208 v52 M274 234 h44' fill='none' stroke-width='1.6'/><rect x='206' y='290' width='44' height='52' fill='#eef0ea'/><path d='M228 290 v52 M206 316 h44' fill='none' stroke-width='1.6'/><rect x='274' y='290' width='44' height='52' fill='#eef0ea'/><path d='M296 290 v52 M274 316 h44' fill='none' stroke-width='1.6'/><rect x='-2' y='172' width='208' height='16' fill='#7a5a45'/><rect x='6' y='186' width='192' height='234' fill='#f0d6c6'/><rect x='24' y='204' width='48' height='54' fill='#efe9d6'/><path d='M48 204 v54 M24 231 h48' fill='none' stroke-width='1.6'/><rect x='128' y='204' width='48' height='54' fill='#efe9d6'/><path d='M152 204 v54 M128 231 h48' fill='none' stroke-width='1.6'/><rect x='22' y='268' width='160' height='34' fill='#fbf1dc'/><text x='102' y='294' text-anchor='middle' font-size='24' fill='#7a3f2a' stroke='none' style='font-family:var(--f-display)'>빵집</text><rect x='14.0' y='308' width='25.1' height='18' fill='#3f6aa0'/><rect x='39.1' y='308' width='25.1' height='18' fill='#f3ead2'/><rect x='64.3' y='308' width='25.1' height='18' fill='#3f6aa0'/><rect x='89.4' y='308' width='25.1' height='18' fill='#f3ead2'/><rect x='114.6' y='308' width='25.1' height='18' fill='#3f6aa0'/><rect x='139.7' y='308' width='25.1' height='18' fill='#f3ead2'/><rect x='164.9' y='308' width='25.1' height='18' fill='#3f6aa0'/><circle cx='26.6' cy='326' r='12.6' fill='#3f6aa0'/><circle cx='51.7' cy='326' r='12.6' fill='#f3ead2'/><circle cx='76.9' cy='326' r='12.6' fill='#3f6aa0'/><circle cx='102.0' cy='326' r='12.6' fill='#f3ead2'/><circle cx='127.1' cy='326' r='12.6' fill='#3f6aa0'/><circle cx='152.3' cy='326' r='12.6' fill='#f3ead2'/><circle cx='177.4' cy='326' r='12.6' fill='#3f6aa0'/><rect x='18' y='340' width='50' height='80' fill='#8b5a34'/><rect x='26' y='350' width='34' height='40' fill='#bcd8e2' stroke-width='1.6'/><rect x='82' y='344' width='100' height='76' fill='#bcd8e2'/><path d='M132 344 v76' fill='none' stroke-width='1.6'/><ellipse cx='104' cy='402' rx='15' ry='8' fill='#d9a441' stroke-width='1.6'/><ellipse cx='132' cy='400' rx='13' ry='9' fill='#e2b255' stroke-width='1.6'/><ellipse cx='160' cy='402' rx='15' ry='8' fill='#d9a441' stroke-width='1.6'/></g><path d='M92 322 L68 356' stroke='#7a8a52' stroke-width='3.2' stroke-linecap='round' fill='none'/><rect x='62' y='353' width='14' height='6' rx='1.5' fill='#8a8e92' stroke='#3a2e22' stroke-width='1.2'/><g transform='translate(92 322) rotate(20) scale(0.78)'><rect width='60' height='40' fill='#fbfaf5' stroke='#cfc9b8' stroke-width='1'/><path d='M23 20a7 7 0 0 1 14 0a3.5 3.5 0 0 1-7 0a3.5 3.5 0 0 0-7 0z' fill='#cd2e3a'/><path d='M37 20a7 7 0 0 1-14 0a3.5 3.5 0 0 1 7 0a3.5 3.5 0 0 0 7 0z' fill='#0047a0'/><g transform='translate(11 8) rotate(-56)' fill='#111'><rect x='-5' y='-4.0' width='10' height='1.7'/><rect x='-5' y='-0.8' width='10' height='1.7'/><rect x='-5' y='2.4' width='10' height='1.7'/></g><g transform='translate(49 8) rotate(56)' fill='#111'><rect x='-5' y='-4.0' width='4.2' height='1.7'/><rect x='0.8' y='-4.0' width='4.2' height='1.7'/><rect x='-5' y='-0.8' width='10' height='1.7'/><rect x='-5' y='2.4' width='4.2' height='1.7'/><rect x='0.8' y='2.4' width='4.2' height='1.7'/></g><g transform='translate(11 32) rotate(56)' fill='#111'><rect x='-5' y='-4.0' width='10' height='1.7'/><rect x='-5' y='-0.8' width='4.2' height='1.7'/><rect x='0.8' y='-0.8' width='4.2' height='1.7'/><rect x='-5' y='2.4' width='10' height='1.7'/></g><g transform='translate(49 32) rotate(-56)' fill='#111'><rect x='-5' y='-4.0' width='4.2' height='1.7'/><rect x='0.8' y='-4.0' width='4.2' height='1.7'/><rect x='-5' y='-0.8' width='4.2' height='1.7'/><rect x='0.8' y='-0.8' width='4.2' height='1.7'/><rect x='-5' y='2.4' width='4.2' height='1.7'/><rect x='0.8' y='2.4' width='4.2' height='1.7'/></g></g><circle cx='92' cy='322' r='3.6' fill='#e3b94a'/></svg>
-      <i class="st-glow"></i>
-      <i class="st-vig"></i>
-    </div>
-    <div class="signboard">
-      <div class="sign-main">
-        <h1><button type="button" class="sign-btn" data-go="home">Comic Room<span class="vh">. Go to the home page.</span></button></h1>
-        <p class="sign-tag">Daniel Seo<span aria-hidden="true"> &middot; </span><span class="vh">, </span>My little piece of Korea</p>
-      </div>
-    </div>
-    <div class="roof" aria-hidden="true"></div>
-    <div class="beam" aria-hidden="true"></div>
-    <div class="wall">
-      <section class="view" id="view-home" aria-labelledby="home-h">
-        <header class="notice">
-          <div>
-            <p class="eyebrow">Product Designer · 5 years of experience</p>
-            <h2 id="home-h" tabindex="-1" data-focus>I design B2B products that move revenue.</h2>
-            <p class="lede">Ex-Dell &middot; MHCI+D @ UW, Expected Aug 2027</p>
-            <div class="notice-acts">
-              <button type="button" class="btn" data-go="projects">View Projects</button>
-              <a class="btn ghost" href="Dongyeon%20Seo%20(Daniel)%20Resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">&#8599;</span><span class="vh"> (opens in a new tab)</span></a>
-            </div>
-          </div>
-        </header>
-        <section aria-labelledby="stats-h">
-          <div class="painted">
-            <div>
-              <h2 id="stats-h">Results at a glance</h2>
-            </div>
-          </div>
-          <ul class="tiles">
-            <li><div class="tile"><span class="burst"><span class="tile-n">+9.9%</span></span><span class="tile-l">Average order value</span><span class="tile-c">Dell Premier homepage</span></div></li>
-            <li><div class="tile"><span class="burst"><span class="tile-n">2.8&times;</span></span><span class="tile-l">New account submissions</span><span class="tile-c">Dell Premier landing page</span></div></li>
-            <li><div class="tile"><span class="burst"><span class="tile-n two fromto"><i>37% &rarr;</i><b>0%</b></span></span><span class="tile-l">WCAG failures</span><span class="tile-c">ShelterTech accessibility audit</span></div></li>
-            <li><div class="tile"><span class="burst"><span class="tile-n long">2</span></span><span class="tile-l">Awards at Dell</span><span class="tile-c">President&rsquo;s Award, Game Changer Award</span></div></li>
-          </ul>
-        </section>
-      </section>
-    </div>
-    <div class="step" aria-hidden="true"></div>
-  </div>
-
   <div id="scene-in" class="room" hidden>
     <h1 class="vh">Daniel Seo, Comic Room</h1>
     <header class="topbar">
-      <button type="button" class="mark" data-go="home"><span class="vh">Daniel Seo Comic Room. Step outside to the home page.</span><span class="mark-a" aria-hidden="true">Comic Room</span><span class="mark-b" aria-hidden="true">Daniel Seo</span></button>
-      <nav class="toplinks" aria-label="Contact">
-        <a class="toplink" href="https://www.linkedin.com/in/dongyeonseo" target="_blank" rel="noopener">LinkedIn<svg class="ext" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (opens in a new tab)</span></a>
-        <a class="toplink" href="Dongyeon%20Seo%20(Daniel)%20Resume.pdf" target="_blank" rel="noopener">Resume<svg class="ext" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (PDF, opens in a new tab)</span></a>
-        <a class="toplink" href="mailto:dseo1212@uw.edu">Email</a>
+      <button type="button" class="mark" data-go="projects"><span class="vh">Daniel Seo Comic Room. Back to the top.</span><span class="mark-a" aria-hidden="true">Comic Room</span><span class="mark-b" aria-hidden="true">Daniel Seo</span></button>
+      <nav class="toplinks" aria-label="Main">
+        <button type="button" class="toplink tab" data-go="projects">Home</button>
+        <button type="button" class="toplink tab" data-go="testimonials">Testimonials</button>
+        <button type="button" class="toplink tab" data-go="about">About</button>
+        <button type="button" class="toplink tab" id="dock-recipe" data-go="recipe" hidden>Recipe</button>
       </nav>
     </header>
     <div class="glow" aria-hidden="true"></div>
     <button type="button" class="lamp" id="lamp" aria-pressed="true" aria-label="Lamp light"></button>
 
     <div class="room-body">
-      <section class="view" id="view-projects" aria-labelledby="proj-h" hidden>
-        <div class="painted">
+      <section class="view" id="view-projects" aria-labelledby="home-h" hidden>
+<div class="painted intro">
           <div>
-            <h2 id="proj-h" tabindex="-1" data-focus>Projects</h2>
-            <p class="hint">Open one to read the full story and get your card stamped.</p>
+            <h2 id="home-h" tabindex="-1" data-focus>Hi, I&rsquo;m Daniel.<br>I make accessible design that grows revenue.</h2>
+            <p class="hint"><b class="yrs">5 years</b> at Dell &middot; <b class="yrs">CPACC</b> &amp; <b class="yrs">DHS Trusted Tester</b> &middot; MHCI+D at UW</p>
           </div>
         </div>
+
+        
         <ul class="cards" id="cards"></ul>
       </section>
 
@@ -695,7 +701,8 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
               <p>The comic room is a little piece of Korea that I carry with me. It&rsquo;s a familiar place rooted in my culture, and I&rsquo;m excited to share it with others! Let&rsquo;s connect, and I would love to hear your story, too.</p>
               <div class="slip-acts">
                 <a class="btn" href="Dongyeon%20Seo%20(Daniel)%20Resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">&#8599;</span><span class="vh"> (opens in a new tab)</span></a>
-                <a class="btn ghost" href="mailto:dseo1212@uw.edu">dseo1212@uw.edu</a>
+                <a class="btn ghost" href="https://www.linkedin.com/in/dongyeonseo" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">&#8599;</span><span class="vh"> (opens in a new tab)</span></a>
+                <a class="btn tertiary" href="mailto:dseo1212@uw.edu">dseo1212@uw.edu</a>
               </div>
             </article>
           </div>
@@ -768,14 +775,10 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
   </div>
 </div>
 
-<nav class="dock" aria-label="Main">
-  <button type="button" class="dk" data-go="projects"><span class="ico"><span class="ico-poster"></span></span>Projects</button>
-  <button type="button" class="dk" data-go="testimonials"><span class="ico"><span class="ico-note"></span></span>Testimonials</button>
-  <button type="button" class="dk" data-go="about"><span class="ico"><span class="ico-me" aria-hidden="true"></span></span>About</button>
-  <span class="divider" aria-hidden="true"></span>
-  <button type="button" class="dk" id="dock-recipe" data-go="recipe" hidden><span class="ico"><span class="ico-recipe"></span></span>Recipe</button>
+<nav class="dock" aria-label="Membership card">
   <button type="button" class="dk" id="card-chip" aria-expanded="false" aria-controls="cardpop">
-    <span class="ico" id="chip-ico"><span class="mini"><span class="mbar"></span><span class="mdots" id="mdots"></span></span></span>Card
+    <span class="ico" id="chip-ico"><span class="mini"><span class="mbar"></span><span class="mdots" id="mdots"></span></span></span>
+    <span class="chip-t"><b>Collect</b><small id="chip-prog">0/6</small></span>
     <span class="badge" id="chip-badge" hidden></span>
   </button>
 </nav>
@@ -839,8 +842,8 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
       svg: '<svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="24" cy="44" rx="11" ry="2" fill="rgba(0,0,0,.15)"/><path d="M15 21q0-8 4-11h10q4 3 4 11v2h2.5v17a3 3 0 0 1-3 3H15.5a3 3 0 0 1-3-3V23H15z" fill="#f4dc6a" stroke="#c9a92f" stroke-width="1.2" stroke-linejoin="round"/><rect x="16" y="5" width="16" height="6" rx="2" fill="#4d7561"/><path d="M12.5 23h23v3h-23z" fill="#fbeea0" opacity=".85"/><text x="24" y="19" text-anchor="middle" font-size="5.2" font-weight="700" fill="#2f6b4a" font-family="Do Hyeon, Gowun Batang, sans-serif">&#48148;&#45208;&#45208;&#47283;</text><text x="24" y="33" text-anchor="middle" font-size="7" font-weight="700" fill="#3b8a5a" font-family="Do Hyeon, Gowun Batang, sans-serif">&#50864;&#50976;</text><path d="M17 28v9" stroke="#fff8d0" stroke-width="1.6" stroke-linecap="round" opacity=".7"/></svg>'
     }
   ];
-  var TITLES = { home: 'Daniel Seo | Product Designer', projects: 'Projects | Daniel Seo', testimonials: 'Words from teammates | Daniel Seo', about: 'About | Daniel Seo', recipe: 'Grandma\u2019s recipe | Daniel Seo', 'case-home': 'Dell Premier Homepage Redesign | Daniel Seo', 'case-landing': 'Dell Premier Landing Page Redesign | Daniel Seo', 'case-shelter': 'Accessibility Audit for ShelterTech.org | Daniel Seo', 'case-privy': 'Privy | Daniel Seo' };
-  var VIEWS = ['home', 'projects', 'testimonials', 'about', 'recipe', 'case-home', 'case-landing', 'case-shelter', 'case-privy'];
+  var TITLES = { home: 'Daniel Seo | Product Designer', projects: 'Daniel Seo | Product Designer', testimonials: 'Words from teammates | Daniel Seo', about: 'About | Daniel Seo', recipe: 'Grandma\u2019s recipe | Daniel Seo', 'case-home': 'Dell Premier Homepage Redesign | Daniel Seo', 'case-landing': 'Dell Premier Landing Page Redesign | Daniel Seo', 'case-shelter': 'Accessibility Audit for ShelterTech.org | Daniel Seo', 'case-privy': 'Privy | Daniel Seo' };
+  var VIEWS = ['projects', 'testimonials', 'about', 'recipe', 'case-home', 'case-landing', 'case-shelter', 'case-privy'];
   var KEY = 'daniel-comic-room-v1';
   /* Reminder sign-ups go to a Google Form (the form's formResponse URL and the Email question's entry id). Leave REMIND_URL empty for demo mode: nothing is sent. */
   var REMIND_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfjedhR-xWUc3_3upq7s5qhrbMbGDgUZU-7CzoVSvRsgJNZrA/formResponse';
@@ -865,10 +868,11 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
   var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
   var cardsEl = $('#cards'), stampsEl = $('#stamps'), albumEl = $('#album');
   var rentCount = $('#rent-count'), stickerCount = $('#sticker-count'), reward = $('#reward'), hint = $('#card-hint');
-  var pop = $('#cardpop'), chip = $('#card-chip'), chipIco = $('#chip-ico'), mdots = $('#mdots'), badge = $('#chip-badge'), dockRecipe = $('#dock-recipe');
-  var sceneOut = $('#scene-out'), sceneIn = $('#scene-in'), sceneCase = $('#scene-case');
+  var pop = $('#cardpop'), chip = $('#card-chip'), chipIco = $('#chip-ico'), mdots = $('#mdots'), badge = $('#chip-badge');
+  function setRecipeTab(on) { $$('.tab[data-go="recipe"]').forEach(function (t) { t.hidden = !on; }); }
+  var sceneIn = $('#scene-in'), sceneCase = $('#scene-case');
   var toastEl = $('#toast'), toastTimer = null;
-  var current = 'home', entered = false, rewardPending = false;
+  var current = 'projects', entered = false, rewardPending = false;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var HINT = 'Rent every finished poster and find both hidden stickers to unlock a reward. They are tucked away around the shop, so look on every page. Click a sticker again to put it back.';
 
@@ -907,19 +911,18 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
 
   /* pages and scenes */
   function show(view, userAction) {
-    if (VIEWS.indexOf(view) === -1 || (view === 'recipe' && !unlocked())) view = 'home';
-    var isCase = view.indexOf('case-') === 0, inside = view !== 'home' && !isCase, wasInside = document.body.classList.contains('inside');
+    if (VIEWS.indexOf(view) === -1 || (view === 'recipe' && !unlocked())) view = 'projects';
+    var isCase = view.indexOf('case-') === 0, inside = !isCase, wasInside = document.body.classList.contains('inside');
     current = view;
-    document.title = TITLES[view] || TITLES.home;
+    document.title = TITLES[view] || TITLES.projects;
     if (isCase && typeof buildSide === 'function') buildSide(view);
     VIEWS.forEach(function (v) { $('#view-' + v).hidden = (v !== view); });
-    sceneOut.hidden = view !== 'home';
     sceneIn.hidden = !inside;
     sceneCase.hidden = !isCase;
     if (isCase && !toastEl.classList.contains('stamped')) toastEl.classList.remove('on');
     document.body.classList.toggle('inside', inside);
     document.body.classList.toggle('on-case', isCase);
-    $$('.dk[data-go]').forEach(function (b) {
+    $$('.tab[data-go]').forEach(function (b) {
       if (b.dataset.go === view) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
     });
     closeCard(false);
@@ -930,7 +933,7 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
       if (h) h.focus({ preventScroll: true });
       if (inside && !wasInside && !entered) { entered = true; toast('Ding-a-ling! Welcome in.'); }
     }
-    if (!isCase && rewardPending) { rewardPending = false; toast('Reward unlocked: Grandma’s recipe. Find it in the dock.'); }
+    if (!isCase && rewardPending) { rewardPending = false; toast('Reward unlocked: Grandma’s recipe. Find it in the menu at the top.'); }
   }
   function go(view) {
     try { if (location.hash.slice(1) !== view) location.hash = view; } catch (e) {}
@@ -1005,6 +1008,7 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
   sceneCase.insertBefore(caseSide, sceneCase.firstChild);
   var caseTop = $('#scene-in .topbar').cloneNode(true);
   caseTop.classList.add('case-topbar');
+  Array.prototype.forEach.call(caseTop.querySelectorAll('[id]'), function (n) { n.removeAttribute('id'); });
   sceneCase.insertBefore(caseTop, sceneCase.firstChild);
   var sideNav = $('#side-nav'), sideItems = [];
   function buildSide(view) {
@@ -1098,6 +1102,8 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
     Array.prototype.forEach.call(mdots.children, function (d, i) { d.classList.toggle('on', isRented(ids[i])); });
     rentCount.textContent = REQUIRED.filter(function (p) { return isRented(p.id); }).length + ' / ' + REQUIRED.length;
     stickerCount.textContent = state.stickers.length + ' / ' + STICKERS.length;
+    var got = REQUIRED.filter(function (p) { return isRented(p.id); }).length + state.stickers.length, all = REQUIRED.length + STICKERS.length;
+    $('#chip-prog').textContent = got === all ? 'Done!' : got + '/' + all;
     albumEl.innerHTML = '';
     STICKERS.forEach(function (s, i) {
       var li = document.createElement('li');
@@ -1119,12 +1125,12 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
     if (u && !rv.firstElementChild) rv.appendChild($('#recipe-tpl').content.cloneNode(true));
     if (!u) rv.textContent = '';
     reward.hidden = !u;
-    dockRecipe.hidden = !u;
+    setRecipeTab(u);
     badge.hidden = !u;
     hint.hidden = u;
     hint.textContent = HINT;
     chip.setAttribute('aria-label', 'Membership card. ' + REQUIRED.filter(function (p) { return isRented(p.id); }).length + ' of ' + REQUIRED.length + ' posters rented, ' + state.stickers.length + ' of ' + STICKERS.length + ' stickers found' + (u ? ', reward unlocked' : '') + '.');
-    if (!u && current === 'recipe') show('home', false);
+    if (!u && current === 'recipe') show('projects', false);
   }
 
   /* actions */
@@ -1134,7 +1140,8 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
     state.rented.push(id);
     save();
     bump();
-    renderCards(); renderMember();
+  
+  renderCards(); renderMember();
     if (!wasUnlocked && unlocked()) rewardPending = true;
     toastStamp(byId(id).name);
   }
@@ -1184,7 +1191,7 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
     } else {
       state.stickers.push(id);
       bump();
-      if (!wasUnlocked && unlocked()) toast('Reward unlocked: Grandma’s recipe. Find it in the dock.');
+      if (!wasUnlocked && unlocked()) toast('Reward unlocked: Grandma’s recipe. Find it in the menu at the top.');
       else toast('Collected the ' + s.name.toLowerCase() + ' sticker' + s.gloss + '. ' + state.stickers.length + ' of ' + STICKERS.length + ' found.');
     }
     save(); renderMember();
@@ -1212,6 +1219,7 @@ html { scroll-padding-bottom: 130px; scroll-padding-top: 24px; }
 
   $$('ul, ol').forEach(function (l) { if (getComputedStyle(l).listStyleType === 'none') l.setAttribute('role', 'list'); });
   renderCards(); renderMember();
+
   var start = '';
   try { start = location.hash.slice(1); } catch (e) {}
   show(start, false);
