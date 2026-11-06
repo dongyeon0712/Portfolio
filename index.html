@@ -626,6 +626,10 @@ body.inside::after { display: none; }
 #view-projects .painted.intro { padding-top: 28px; }
 #view-projects .painted .hint { margin-top: 18px; }
 #view-projects { gap: 52px; }
+#view-projects .painted.intro h2 { font-family: var(--f-label); font-weight: 400; font-size: clamp(1.75rem, 6vw, 48px); letter-spacing: .06em; -webkit-text-stroke: .03em currentColor; }
+@media (min-width: 760px) {
+  #view-projects .painted.intro .hint { max-width: none; white-space: nowrap; text-wrap: nowrap; }
+}
 </style>
 
 </head>
@@ -649,7 +653,7 @@ body.inside::after { display: none; }
       <section class="view" id="view-projects" aria-labelledby="home-h" hidden>
 <div class="painted intro">
           <div>
-            <h2 id="home-h" tabindex="-1" data-focus>Hi, I&rsquo;m Daniel, an <span style="white-space:nowrap">accessibility-first</span> designer that grows revenue.</h2>
+            <h2 id="home-h" tabindex="-1" data-focus>Hi, I&rsquo;m Daniel, an <span style="white-space:nowrap">accessibility-first</span> product designer that grows revenue.</h2>
             <p class="hint"><b class="yrs">5 years</b> at Dell &middot; <b class="yrs">CPACC</b> &amp; <b class="yrs">DHS Trusted Tester</b> &middot; MHCI+D at UW</p>
           </div>
         </div>
@@ -668,7 +672,13 @@ body.inside::after { display: none; }
         <ul class="notes">
           <li>
             <figure class="note">
-              <blockquote><p>&ldquo;Dongyeon is a dependable and reliable team player, and is very articulate during meetings and explaining design reasonings. <mark>He keeps us in check for design accessibility, and always has insightful design feedback supported with research and clear instructions.</mark> I am very grateful to have him on my team, and would highly recommend him to anyone.&rdquo;</p></blockquote>
+              <blockquote><p>&ldquo;When I arrived at the meeting, Daniel already had mocked up some ideas and had done competitive research. <mark>This is regular behavior of Daniel, he&rsquo;s always step ahead.</mark>&rdquo;</p></blockquote>
+              <figcaption>Josh B<span>Senior Principal Product Designer, Dell</span></figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="note">
+              <blockquote><p>&ldquo;<mark>Daniel keeps us in check for design accessibility</mark>, and always has insightful design feedback supported with research and clear instructions.&rdquo;</p></blockquote>
               <figcaption>Joan A<span>Visual Designer, Amazon</span></figcaption>
             </figure>
           </li>
@@ -680,13 +690,7 @@ body.inside::after { display: none; }
           </li>
           <li>
             <figure class="note">
-              <blockquote><p>&ldquo;When I arrived at the meeting, Daniel already had mocked up some ideas and had done competitive research. <mark>This is regular behavior of Daniel, he&rsquo;s always step ahead.</mark>&rdquo;</p></blockquote>
-              <figcaption>Josh B<span>Senior Principal Product Designer, Dell</span></figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure class="note">
-              <blockquote><p>&ldquo;Dongyeon is a rising star. <mark>His dedication, consistency, and speed are unparalleled.</mark>&rdquo;</p></blockquote>
+              <blockquote><p>&ldquo;Daniel is a rising star. <mark>His dedication, consistency, and speed are unparalleled.</mark>&rdquo;</p></blockquote>
               <figcaption>Clint B<span>Principal Product Designer, Dell</span></figcaption>
               <button type="button" class="sticker spot" data-sticker="tteok" data-spot></button>
             </figure>
@@ -907,7 +911,7 @@ body.inside::after { display: none; }
   }
   function toastStamp(name) {
     toastEl.classList.add('stamped');
-    toastEl.innerHTML = STAMP_SVG + '<span>Stamped: ' + name + '</span>';
+    toastEl.innerHTML = STAMP_SVG + '<span>Rented: ' + name + '</span>';
     toastEl.classList.add('on');
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function () { toastEl.classList.remove('on'); }, 3400);
