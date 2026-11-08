@@ -758,7 +758,7 @@ body.inside::after { display: none; }
 .bv-spread::before { content: ""; position: absolute; z-index: 1; top: 0; bottom: 0; left: 50%; width: 46px; margin-left: -23px; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(0,0,0,.22) 46%, rgba(0,0,0,.34) 50%, rgba(0,0,0,.22) 54%, transparent); }
 .bv-page { position: relative; min-width: 0; padding: 30px 34px 26px; }
 .bv-left { display: flex; flex-direction: column; gap: 14px; padding-right: 40px; }
-.bv-right { padding-left: 44px; display: grid; gap: 16px; align-content: start; background-image: repeating-linear-gradient(transparent 0 33px, rgba(59,95,132,.18) 33px 34px); }
+.bv-right { padding-left: 44px; display: grid; gap: 16px; align-content: start; }
 .bv-fig { margin: 0; }
 .bv-stage { position: relative; display: grid; place-items: center; height: min(44dvh, 440px); padding: 10px; background: #fff; border: 1px solid rgba(0,0,0,.2); box-shadow: 3px 5px 0 rgba(0,0,0,.28); transform: rotate(-.8deg); }
 .bv-stage::before { content: ""; position: absolute; top: -12px; left: 50%; width: 96px; height: 22px; margin-left: -48px; background: rgba(206,188,128,.88); transform: rotate(-2deg); }
@@ -1237,7 +1237,7 @@ body.inside::after { display: none; }
     },
     {
       id: 'popcorn', sketch: true, abbr: 'Popcorn', rot: '4deg', mock: '',
-      file: 'popcorn.agent', tools: 'Hermes, ChatGPT', spineBy: '@Popcorn', name: 'Popcorn', title: 'Popcorn', kicker: 'Personal build · AI agent',
+      file: 'popcorn.agent', tools: 'Hermes · ChatGPT', spineBy: '@Popcorn', name: 'Popcorn', title: 'Popcorn', kicker: 'Personal build · AI agent',
       blurb: 'An AI teammate that <strong>covers my requests while I’m out</strong>, and has to <strong>get approval before it builds anything</strong>.',
       org: 'Issue #1', pill: 'Unreleased prototype',
       stat: '6', statSm: false, statLabel: 'harmful AI patterns designed against',
@@ -1250,7 +1250,7 @@ body.inside::after { display: none; }
     },
     {
       id: 'safebite', sketch: true, cover: 'safebite-cover', abbr: 'SafeBite', rot: '-3deg', mock: '',
-      file: 'safebite.app', tools: 'Claude, Figma MCP, Render', spineBy: 'Table 12', name: 'SafeBite', title: 'SafeBite', kicker: 'Class project, built further · Food allergies',
+      file: 'safebite.app', tools: 'Claude · Figma MCP · Render', spineBy: 'Table 12', name: 'SafeBite', title: 'SafeBite', kicker: 'Class project, built further · Food allergies',
       blurb: 'A shared sense of responsibility between <strong>people with food allergies</strong> and the <strong>staff who serve them</strong>.',
       org: 'Ideation Studio', pill: 'Live prototype',
       stat: '50', statSm: false, statLabel: 'Reddit posts reviewed',
@@ -1736,7 +1736,7 @@ body.inside::after { display: none; }
       dlg.className = 'bookview p-' + id;
       $('#proc-title').textContent = p.file || p.id;
       $('#proc-h').textContent = p.title;
-      $('#proc-dl').innerHTML = '<div><dt>Role</dt><dd>' + p.role + '</dd></div>' + (p.tools ? '<div><dt>Built with</dt><dd>' + p.tools + '</dd></div>' : '') + '<div><dt>Status</dt><dd>' + p.pill + '</dd></div>';
+      $('#proc-dl').innerHTML = '<div><dt>Role</dt><dd>' + p.role + '</dd></div>' + (p.tools ? '<div><dt>Built with</dt><dd>' + p.tools + '</dd></div>' : '') ;
       $('#proc-blurb').innerHTML = p.blurb;
       $('#proc-more').href = '#case-' + id;
       $('#proc-thumbs').innerHTML = items.map(function (it, i) { return '<li><button type="button" class="bv-th" data-i="' + i + '" aria-label="Show image ' + (i + 1) + ' of ' + items.length + ': ' + it.cap + '"><img src="' + it.src + '" alt=""></button></li>'; }).join('');
