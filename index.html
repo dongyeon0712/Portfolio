@@ -1191,6 +1191,7 @@ body.inside::after { display: none; }
         <h2 id="proc-h"></h2>
         <dl id="proc-dl"></dl>
         <p id="proc-blurb"></p>
+        <a class="go bv-more" id="proc-live" href="#projects" target="_blank" rel="noopener" hidden>Open the live prototype <span aria-hidden="true">&#8599;</span><span class="vh"> (opens in a new tab)</span></a>
         <a class="go bv-more" id="proc-more" href="#projects">Read the full story <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
@@ -1268,6 +1269,7 @@ body.inside::after { display: none; }
       chips: [],
       coverAlt: 'SafeBite cover art. A single green Apple Wallet card with rounded corners, on a plain white background. It shows the SafeBite pass for Alex Rivera, marked anaphylactic, with peanuts, shellfish and sesame as do not serve, and a prompt to hold near the server\u2019s reader.',
       role: 'Research · Prototype · Build',
+      live: 'https://safebite-tibr.onrender.com/#/welcome',
       result: 'Researched, designed and shipped a live prototype',
       problem: 'People with food allergies carry <strong>a disproportionate mental and emotional burden</strong> in social dining.',
       url: ''
@@ -1775,9 +1777,9 @@ body.inside::after { display: none; }
       $('#proc-h').textContent = p.title;
       $('#proc-dl').innerHTML = '<div><dt>Role</dt><dd>' + p.role + '</dd></div>' + (p.tools ? '<div><dt>Built with</dt><dd>' + p.tools + '</dd></div>' : '') ;
       $('#proc-blurb').innerHTML = p.blurb;
-      var more = $('#proc-more');
-      if (p.live) { more.href = p.live; more.target = '_blank'; more.rel = 'noopener'; more.innerHTML = 'Open the live prototype <span aria-hidden="true">&#8599;</span><span class="vh"> (opens in a new tab)</span>'; }
-      else { more.href = '#case-' + id; more.removeAttribute('target'); more.removeAttribute('rel'); more.innerHTML = 'Read the full story <span aria-hidden="true">&rarr;</span>'; }
+      var live = $('#proc-live'), more = $('#proc-more'), hasCase = !!document.getElementById('view-case-' + id);
+      live.hidden = !p.live; if (p.live) live.href = p.live;
+      more.hidden = !hasCase; more.href = '#case-' + id;
       $('#proc-thumbs').innerHTML = items.map(function (it, i) { return '<li><button type="button" class="bv-th" data-i="' + i + '" aria-label="Show image ' + (i + 1) + ' of ' + items.length + ': ' + it.cap + '"><img src="' + it.src + '" alt=""></button></li>'; }).join('');
       showAt(0);
       dlg.showModal();
@@ -1790,7 +1792,7 @@ body.inside::after { display: none; }
         openProcess(a.getAttribute('href').replace('#case-', ''));
       }, true);
       $('#proc-x').addEventListener('click', function () { dlg.close(); });
-      $('#proc-more').addEventListener('click', function () { if (!this.target) dlg.close(); });
+      $('#proc-more').addEventListener('click', function () { dlg.close(); });
       $('#proc-pause').addEventListener('click', function () { setPlay(!playing); });
       $('#proc-dots').addEventListener('click', function (e) {
         var b = e.target.closest('.bv-dot'); if (!b) return;
