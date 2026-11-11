@@ -840,6 +840,8 @@ body.inside::after { display: none; }
 
 </head>
 <body>
+<span id="page-top" tabindex="-1"></span>
+<div class="vh" id="route-status" role="status" aria-live="polite"></div>
 <a class="skip" href="#main" id="skip">Skip to main content</a>
 <main id="main" tabindex="-1">
   <div id="scene-in" class="room" hidden>
@@ -1402,7 +1404,12 @@ body.inside::after { display: none; }
     if (isCase) spy();
     if (userAction) {
       var h = $('#view-' + view + ' [data-focus]');
-      if (h) h.focus({ preventScroll: true });
+      if (isCase) {
+        /* start the tab order at the top (skip link, then the menu) instead of inside the page. Say what opened. */
+        $('#page-top').focus({ preventScroll: true });
+        $('#route-status').textContent = '';
+        setTimeout(function () { $('#route-status').textContent = document.title; }, 60);
+      } else if (h) h.focus({ preventScroll: true });
       if (inside && !wasInside && !entered) { entered = true; toast('Ding-a-ling! Welcome in.'); }
     }
     if (!isCase && rewardPending) { rewardPending = false; toast('Reward unlocked: Grandma’s recipe. Find it in the menu at the top.'); }
