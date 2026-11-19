@@ -697,6 +697,7 @@ body.inside::after { display: none; }
 #view-projects .painted.intro { padding-top: 28px; }
 #view-projects .painted .hint { margin-top: 18px; }
 #view-projects { gap: 52px; }
+.hl { color: var(--chalk); white-space: nowrap; text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: .18em; text-decoration-color: var(--chalk-y); }
 #view-projects .painted.intro h2 { font-family: var(--f-label); font-weight: 400; font-size: clamp(1.75rem, 6vw, 48px); letter-spacing: .06em; -webkit-text-stroke: .03em currentColor; }
 @media (min-width: 760px) {
   #view-projects .painted.intro .hint { max-width: none; white-space: nowrap; text-wrap: nowrap; }
@@ -887,8 +888,7 @@ body.inside::after { display: none; }
       <section class="view" id="view-projects" aria-labelledby="home-h" hidden>
 <div class="painted intro">
           <div>
-            <h2 id="home-h" tabindex="-1" data-focus>Hi, I&rsquo;m Daniel, an <span style="white-space:nowrap">accessibility-first</span> product designer that grows revenue.</h2>
-            <p class="hint"><b class="yrs">5 years</b> at Dell &middot; <b class="yrs">CPACC</b> &amp; <b class="yrs">DHS Trusted Tester</b> &middot; MHCI+D at UW</p>
+            <h2 id="home-h" tabindex="-1" data-focus>Hi, I&rsquo;m Daniel. <span class="hl">5 years at Dell</span> designing accessible products that grow revenue.</h2>
           </div>
         </div>
 
