@@ -134,7 +134,11 @@ body:not(.inside):not(.on-case) { margin-bottom: 0; }
 .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 18px; }
 .mark { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; background-color: var(--board); background-image: var(--grain); border: 4px solid var(--wood); border-radius: 3px; padding: 5px 12px 6px; cursor: pointer; color: var(--ink); box-shadow: 0 3px 0 rgba(0,0,0,.3); min-height: 44px; }
 .mark-a { font: 400 1.25rem/1 var(--f-display); color: var(--red); letter-spacing: .06em; text-transform: uppercase; }
-.mark-b { font: 400 .8rem/1 var(--f-label); letter-spacing: .2em; text-transform: uppercase; }
+.mark-b { display: inline-flex; align-items: center; font: 400 .8rem/1 var(--f-label); letter-spacing: .2em; text-transform: uppercase; }
+.mark-k { letter-spacing: .1em; }
+.mark-b { font-size: 1.1rem; }
+.mark { align-items: center; justify-content: center; gap: 0; padding: 5px 14px 5px; overflow: visible; background-color: var(--board); background-image: var(--grain); border: 4px solid var(--wood); border-radius: 3px; box-shadow: inset 0 0 0 3px var(--board), inset 0 0 0 4px rgba(0,0,0,.25), 0 3px 0 rgba(0,0,0,.3); }
+.pt-name { font: 400 1.05rem/1 var(--f-label); letter-spacing: .24em; padding-left: .24em; text-transform: uppercase; color: var(--ink); }
 .toplink { display: inline-flex; align-items: center; min-height: 44px; padding: 0 2px; font: 400 1rem/1 var(--f-label); letter-spacing: .14em; text-transform: uppercase; color: var(--chalk); text-decoration: none; }
 .toplinks { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 0 22px; }
 .toplink { gap: 7px; }
@@ -872,7 +876,7 @@ body.inside::after { display: none; }
   <div id="scene-in" class="room" hidden>
     <h1 class="vh">Daniel Seo, Comic Room</h1>
     <header class="topbar">
-      <button type="button" class="mark" data-go="projects"><span class="vh">Daniel Seo Comic Room. Back to the top.</span><span class="mark-a" aria-hidden="true">Comic Room</span><span class="mark-b" aria-hidden="true">Daniel Seo</span></button>
+      <button type="button" class="mark" data-go="projects" title="A little piece of Korea"><span class="vh">Daniel Seo. Back to the top.</span><span class="pt-name" aria-hidden="true">Daniel Seo</span></button>
       <nav class="toplinks" aria-label="Main">
         <button type="button" class="toplink tab" data-go="projects">Home</button>
         <button type="button" class="toplink tab" data-go="sketchbook">Play</button>
